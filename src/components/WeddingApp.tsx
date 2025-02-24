@@ -23,7 +23,7 @@ const WeddingApp: React.FC = () => {
 
   useEffect(() => {
     const calculateTimeLeft = (): void => {
-      const weddingDate: number = new Date('2025-03-24T18:00:00').getTime();
+      const weddingDate: number = new Date('2025-05-17T13:30:00').getTime();
       const now: number = new Date().getTime();
       const difference: number = weddingDate - now;
 
@@ -40,21 +40,30 @@ const WeddingApp: React.FC = () => {
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
 
-    // Autoplay music when page loads
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-      audioRef.current.play().then(() => {
-        setIsPlaying(true);
-      }).catch(error => {
-        console.log('Autoplay was prevented. User interaction required.');
-      });
-    }
+    // Attempt autoplay with user interaction
+    const handleFirstInteraction = () => {
+      if (audioRef.current) {
+        audioRef.current.volume = volume;
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+        }).catch(error => {
+          console.log('Autoplay was prevented. User interaction required.');
+        });
+
+        // Remove the event listener after first interaction
+        document.removeEventListener('click', handleFirstInteraction);
+      }
+    };
+
+    // Add event listener for first user interaction
+    document.addEventListener('click', handleFirstInteraction);
 
     return () => {
       clearInterval(timer);
       if (audioRef.current) {
         audioRef.current.pause();
       }
+      document.removeEventListener('click', handleFirstInteraction);
     };
   }, []);
 
@@ -93,42 +102,96 @@ const WeddingApp: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-white font-serif">
-      {/* Audio Player */}
-      <div className="fixed bottom-4 right-4 z-50 bg-white/80 backdrop-blur-sm rounded-full shadow-lg p-2">
-        <div className="flex items-center space-x-2">
-          <audio ref={audioRef} loop>
-            <source src="/music/love-song.mp3" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
-          
-          {/* Play/Pause Button */}
-          <button 
-            onClick={togglePlayPause} 
-            className="hover:bg-stone-100 p-2 rounded-full transition-colors"
-          >
-            {isPlaying ? <Pause size={24} /> : <Play size={24} />}
-          </button>
-          
-          {/* Volume Control */}
-          <div className="flex items-center space-x-2">
-            <button 
-              onClick={toggleMute} 
-              className="hover:bg-stone-100 p-2 rounded-full transition-colors"
-            >
-              {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
-            </button>
-            <input 
-              type="range" 
-              min="0" 
-              max="1" 
-              step="0.1" 
-              value={isMuted ? 0 : volume}
-              onChange={handleVolumeChange}
-              className="w-24 h-2 bg-stone-200 rounded-full appearance-none cursor-pointer"
-            />
+      {/* Hero Section */}
+      <section className="relative h-screen">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/hero-background.jpg"
+            alt="Wedding background"
+            fill
+            priority
+            className="object-cover brightness-75"
+          />
+        </div>
+        
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
+          <h1 className="text-5xl md:text-7xl tracking-[0.3em] mb-8 font-light">
+            ALEXA <span className="font-normal">&</span> MARCO
+          </h1>
+          <p className="text-lg md:text-xl tracking-[0.5em] mb-16">SAVE THE DATE</p>
+          <div className="grid grid-cols-4 gap-8 max-w-2xl text-center bg-black/20 p-8 backdrop-blur-sm rounded-lg">
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.days}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">DÍAS</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.hours}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">HORAS</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.minutes}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">MINUTOS</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.seconds}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">SEGUNDOS</div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Romantic Quote Section with White Space Divider */}
+      <section className="relative py-24 bg-white">
+        <div className="absolute inset-0 bg-stone-100 transform -skew-y-6"></div>
+        <div className="relative z-10 max-w-2xl mx-auto text-center px-4">
+          <div className="italic text-xl text-stone-700 leading-relaxed">
+            "Cuando te das cuenta de que deseas pasar el resto de tu vida con alguien, 
+            quieres que el resto de tu vida empiece lo antes posible"
+          </div>
+          <div className="mt-8 flex justify-center">
+            <Heart className="text-stone-400" size={40} />
+          </div>
+        </div>
+      </section>
+
+      {/* Audio Player Section */}
+      <section className="py-8 bg-white flex justify-center items-center">
+        <div className="bg-stone-50 rounded-full shadow-lg p-2">
+          <div className="flex items-center space-x-4">
+            <audio ref={audioRef} loop>
+              <source src="/music/love-song.mp3" type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+            
+            {/* Play/Pause Button */}
+            <button 
+              onClick={togglePlayPause} 
+              className="hover:bg-stone-200 p-2 rounded-full transition-colors"
+            >
+              {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+            </button>
+            
+            {/* Volume Control */}
+            <div className="flex items-center space-x-2">
+              <button 
+                onClick={toggleMute} 
+                className="hover:bg-stone-200 p-2 rounded-full transition-colors"
+              >
+                {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+              </button>
+              <input 
+                type="range" 
+                min="0" 
+                max="1" 
+                step="0.1" 
+                value={isMuted ? 0 : volume}
+                onChange={handleVolumeChange}
+                className="w-24 h-2 bg-stone-200 rounded-full appearance-none cursor-pointer"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Hero Section */}
       <section className="relative h-screen">
