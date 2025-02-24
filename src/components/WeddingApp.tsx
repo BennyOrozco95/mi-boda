@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Heart } from 'lucide-react';
 import Image from 'next/image';
 
@@ -16,6 +16,7 @@ const WeddingApp: React.FC = () => {
     minutes: 0,
     seconds: 0
   });
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
     const calculateTimeLeft = (): void => {
@@ -36,48 +37,81 @@ const WeddingApp: React.FC = () => {
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
 
-    return () => clearInterval(timer);
+    // Autoplay music when page loads
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3; // Set volume to 30%
+      audioRef.current.play().catch(error => {
+        console.log('Autoplay was prevented. User interaction required.');
+      });
+    }
+
+    return () => {
+      clearInterval(timer);
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
   }, []);
 
   return (
     <div className="flex flex-col min-h-screen bg-white font-serif">
+      {/* Audio Player */}
+      <audio ref={audioRef} loop>
+        <source src="/music/love-song.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+
       {/* Hero Section */}
-<section className="relative h-screen">
-  <div className="relative w-full h-full">
-    <Image
-      src="/images/hero-background.jpg"
-      alt="Wedding background"
-      fill
-      priority
-      className="object-cover brightness-75"
-    />
-  </div>
-  
-  <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
-    <h1 className="text-5xl md:text-7xl tracking-[0.3em] mb-8 font-light">
-      ALEXA <span className="font-normal">&</span> MARCO
-    </h1>
-    <p className="text-lg md:text-xl tracking-[0.5em] mb-16">SAVE THE DATE</p>
-    <div className="grid grid-cols-4 gap-8 max-w-2xl text-center bg-black/20 p-8 backdrop-blur-sm rounded-lg">
-      <div>
-        <div className="text-4xl md:text-5xl font-light">{timeLeft.days}</div>
-        <div className="text-sm tracking-[0.2em] mt-2">DÍAS</div>
-      </div>
-      <div>
-        <div className="text-4xl md:text-5xl font-light">{timeLeft.hours}</div>
-        <div className="text-sm tracking-[0.2em] mt-2">HORAS</div>
-      </div>
-      <div>
-        <div className="text-4xl md:text-5xl font-light">{timeLeft.minutes}</div>
-        <div className="text-sm tracking-[0.2em] mt-2">MINUTOS</div>
-      </div>
-      <div>
-        <div className="text-4xl md:text-5xl font-light">{timeLeft.seconds}</div>
-        <div className="text-sm tracking-[0.2em] mt-2">SEGUNDOS</div>
-      </div>
-    </div>
-  </div>
-</section>
+      <section className="relative h-screen">
+        <div className="relative w-full h-full">
+          <Image
+            src="/images/hero-background.jpg"
+            alt="Wedding background"
+            fill
+            priority
+            className="object-cover brightness-75"
+          />
+        </div>
+        
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
+          <h1 className="text-5xl md:text-7xl tracking-[0.3em] mb-8 font-light">
+            ALEXA <span className="font-normal">&</span> MARCO
+          </h1>
+          <p className="text-lg md:text-xl tracking-[0.5em] mb-16">SAVE THE DATE</p>
+          <div className="grid grid-cols-4 gap-8 max-w-2xl text-center bg-black/20 p-8 backdrop-blur-sm rounded-lg">
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.days}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">DÍAS</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.hours}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">HORAS</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.minutes}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">MINUTOS</div>
+            </div>
+            <div>
+              <div className="text-4xl md:text-5xl font-light">{timeLeft.seconds}</div>
+              <div className="text-sm tracking-[0.2em] mt-2">SEGUNDOS</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Romantic Quote Section with White Space Divider */}
+      <section className="relative py-24 bg-white">
+        <div className="absolute inset-0 bg-stone-100 transform -skew-y-6"></div>
+        <div className="relative z-10 max-w-2xl mx-auto text-center px-4">
+          <div className="italic text-xl text-stone-700 leading-relaxed">
+            "Cuando te das cuenta de que deseas pasar el resto de tu vida con alguien, 
+            quieres que el resto de tu vida empiece lo antes posible"
+          </div>
+          <div className="mt-8 flex justify-center">
+            <Heart className="text-stone-400" size={40} />
+          </div>
+        </div>
+      </section>
 
       {/* Parents Section */}
       <section className="py-24 px-4 bg-white text-center">
