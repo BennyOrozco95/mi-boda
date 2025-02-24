@@ -42,48 +42,42 @@ const WeddingApp: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-white font-serif">
       {/* Hero Section */}
-      <section className="relative h-screen">
-        <div className="relative w-full h-full">
-          <Image
-            src="/images/hero-background.jpg"
-            alt="Wedding background"
-            fill
-            priority
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/20" />
-        </div>
-        
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-          <h1 className="text-7xl tracking-[0.3em] mb-8">ALEXA & MARCO</h1>
-          <p className="text-xl tracking-[0.5em] mb-16">SAVE THE DATE</p>
-          <div className="grid grid-cols-4 gap-8 max-w-2xl text-center bg-black/30 p-8 backdrop-blur-sm">
-            <div>
-              <div className="text-5xl font-light mb-2">{timeLeft.days}</div>
-              <div className="text-sm tracking-[0.2em]">Días</div>
-            </div>
-            <div>
-              <div className="text-5xl font-light mb-2">{timeLeft.hours}</div>
-              <div className="text-sm tracking-[0.2em]">Horas</div>
-            </div>
-            <div>
-              <div className="text-5xl font-light mb-2">{timeLeft.minutes}</div>
-              <div className="text-sm tracking-[0.2em]">Minutos</div>
-            </div>
-            <div>
-              <div className="text-5xl font-light mb-2">{timeLeft.seconds}</div>
-              <div className="text-sm tracking-[0.2em]">Segundos</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Quote Section */}
-      <section className="py-24 px-4 bg-stone-50 text-center">
-        <p className="text-xl text-stone-600 leading-relaxed italic max-w-3xl mx-auto">
-          "Cuando te das cuenta de que deseas pasar el resto de tu vida con alguien, quieres que el resto de tu vida empiece lo antes posible"
-        </p>
-      </section>
+<section className="relative h-screen">
+  <div className="relative w-full h-full">
+    <Image
+      src="/images/hero-background.jpg"
+      alt="Wedding background"
+      fill
+      priority
+      className="object-cover brightness-75"
+    />
+  </div>
+  
+  <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
+    <h1 className="text-5xl md:text-7xl tracking-[0.3em] mb-8 font-light">
+      ALEXA <span className="font-normal">&</span> MARCO
+    </h1>
+    <p className="text-lg md:text-xl tracking-[0.5em] mb-16">SAVE THE DATE</p>
+    <div className="grid grid-cols-4 gap-8 max-w-2xl text-center bg-black/20 p-8 backdrop-blur-sm rounded-lg">
+      <div>
+        <div className="text-4xl md:text-5xl font-light">{timeLeft.days}</div>
+        <div className="text-sm tracking-[0.2em] mt-2">DÍAS</div>
+      </div>
+      <div>
+        <div className="text-4xl md:text-5xl font-light">{timeLeft.hours}</div>
+        <div className="text-sm tracking-[0.2em] mt-2">HORAS</div>
+      </div>
+      <div>
+        <div className="text-4xl md:text-5xl font-light">{timeLeft.minutes}</div>
+        <div className="text-sm tracking-[0.2em] mt-2">MINUTOS</div>
+      </div>
+      <div>
+        <div className="text-4xl md:text-5xl font-light">{timeLeft.seconds}</div>
+        <div className="text-sm tracking-[0.2em] mt-2">SEGUNDOS</div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Parents Section */}
       <section className="py-24 px-4 bg-white text-center">
@@ -117,7 +111,7 @@ const WeddingApp: React.FC = () => {
             <p>Las Fuentes</p>
             <p>Zapopan, Jalisco</p>
             <p className="mt-4">06:00 p.m.</p>
-            <button className="mt-6 px-6 py-2 bg-stone-200 rounded-full text-sm">
+            <button className="px-6 py-2 bg-stone-100 hover:bg-stone-200 rounded-full text-sm tracking-wider transition-all duration-300">
               CÓMO LLEGAR
             </button>
           </div>
@@ -128,7 +122,7 @@ const WeddingApp: React.FC = () => {
             <p>Las Fuentes, 45070</p>
             <p>Zapopan, Jal.</p>
             <p className="mt-4">08:00 p.m.</p>
-            <button className="mt-6 px-6 py-2 bg-stone-200 rounded-full text-sm">
+            <button className="px-6 py-2 bg-stone-100 hover:bg-stone-200 rounded-full text-sm tracking-wider transition-all duration-300">
               CÓMO LLEGAR
             </button>
           </div>

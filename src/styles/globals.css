@@ -2,34 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Importar fuente */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+
 /* Variables globales */
 :root {
   --background: #ffffff;
   --foreground: #000000;
+  --beige: #F5F3F0;
+  --brown: #9C8B7A;
 }
 
 /* Estilos base */
-body {
-  margin: 0;
-  padding: 0;
-  color: var(--foreground);
-  background: var(--background);
+@layer base {
+  html {
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    color: var(--foreground);
+    background: var(--background);
+    @apply antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif tracking-wider;
+  }
 }
 
-/* Estilos globales personalizados */
-.font-serif {
-  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+/* Componentes personalizados */
+@layer components {
+  .wedding-button {
+    @apply px-6 py-2 bg-beige rounded-full text-sm hover:bg-brown hover:text-white transition-all duration-300;
+  }
+  
+  .section-title {
+    @apply text-2xl md:text-3xl text-center italic mb-8;
+  }
+  
+  .counter-box {
+    @apply text-4xl md:text-5xl font-light mb-2;
+  }
+  
+  .counter-label {
+    @apply text-sm tracking-[0.2em] uppercase;
+  }
 }
 
-/* Animaciones suaves */
-.transition {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+/* Utilidades personalizadas */
+@layer utilities {
+  .tracking-super-wide {
+    letter-spacing: 0.3em;
+  }
+}
+
+/* Transiciones */
+.transition-all {
+  transition: all 0.3s ease-in-out;
 }
 
 /* Estilos para botones */
 button {
-  cursor: pointer;
-  outline: none;
+  @apply cursor-pointer outline-none wedding-button;
 }
