@@ -21,6 +21,7 @@ const WeddingApp: React.FC = () => {
   const [isMuted, setIsMuted] = useState(false);
   const [volume, setVolume] = useState(0.3);
 
+  // Countdown Timer Setup
   useEffect(() => {
     const calculateTimeLeft = (): void => {
       const weddingDate: number = new Date('2025-05-17T13:30:00').getTime();
@@ -40,66 +41,47 @@ const WeddingApp: React.FC = () => {
     calculateTimeLeft();
     const timer = setInterval(calculateTimeLeft, 1000);
 
-    // Autoplay music
-    useEffect(() => {
-      const calculateTimeLeft = (): void => {
-        const weddingDate: number = new Date('2025-05-17T13:30:00').getTime();
-        const now: number = new Date().getTime();
-        const difference: number = weddingDate - now;
-    
-        if (difference > 0) {
-          setTimeLeft({
-            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-            minutes: Math.floor((difference / 1000 / 60) % 60),
-            seconds: Math.floor((difference / 1000) % 60)
-          });
-        }
-      };
-    
-      calculateTimeLeft();
-      const timer = setInterval(calculateTimeLeft, 1000);
-    
-      // Mute and autoplay strategy
-      const tryAutoplay = () => {
-        if (audioRef.current) {
-          // Mute initially
-          audioRef.current.muted = true;
-          
-          audioRef.current.play().then(() => {
-            setIsPlaying(true);
-            
-            // Unmute after a short delay
-            setTimeout(() => {
-              if (audioRef.current) {
-                audioRef.current.muted = false;
-              }
-            }, 1000);
-          }).catch(error => {
-            console.log('Autoplay was prevented', error);
-          });
-        }
-      };
-    
-      // Try to autoplay immediately
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
+  // Autoplay and Mute Strategy
+  useEffect(() => {
+    const tryAutoplay = () => {
+      if (audioRef.current) {
+        audioRef.current.muted = true;
+
+        audioRef.current.play().then(() => {
+          setIsPlaying(true);
+
+          setTimeout(() => {
+            if (audioRef.current) {
+              audioRef.current.muted = false;
+            }
+          }, 1000);
+        }).catch(error => {
+          console.log('Autoplay was prevented', error);
+        });
+      }
+    };
+
+    tryAutoplay();
+
+    const handleFirstInteraction = () => {
       tryAutoplay();
-    
-      // Fallback: try again on first user interaction
-      const handleFirstInteraction = () => {
-        tryAutoplay();
-        document.removeEventListener('click', handleFirstInteraction);
-      };
-    
-      document.addEventListener('click', handleFirstInteraction);
-    
-      return () => {
-        clearInterval(timer);
-        if (audioRef.current) {
-          audioRef.current.pause();
-        }
-        document.removeEventListener('click', handleFirstInteraction);
-      };
-    }, []);
+      document.removeEventListener('click', handleFirstInteraction);
+    };
+
+    document.addEventListener('click', handleFirstInteraction);
+
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      document.removeEventListener('click', handleFirstInteraction);
+    };
+  }, []);
 
   const togglePlayPause = () => {
     if (audioRef.current) {
@@ -147,6 +129,7 @@ const WeddingApp: React.FC = () => {
             className="object-cover brightness-75"
           />
         </div>
+      
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
           <h1 className="text-5xl md:text-7xl tracking-[0.3em] mb-8 font-light">
