@@ -56,7 +56,9 @@ const WeddingApp: React.FC = () => {
         </div>
         <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 text-white w-full max-w-4xl mx-auto px-4">
-          <h1 className="text-7xl mb-16 tracking-wider">ALEXA & MARCO</h1>
+          <h1 className="text-7xl mb-16 tracking-wider flex items-center justify-center">
+            ALEXA <Heart className="mx-4" size={48} strokeWidth={1.5} /> MARCO
+          </h1>
           <p className="text-xl mb-12 tracking-widest">S A V E&nbsp;&nbsp;&nbsp;T H E&nbsp;&nbsp;&nbsp;D A T E</p>
           <div className="grid grid-cols-4 gap-8 max-w-2xl mx-auto">
             <div className="text-center">
