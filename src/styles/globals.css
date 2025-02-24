@@ -16,17 +16,9 @@ body {
   background: var(--background);
 }
 
-/* Estilos para fuentes */
-@font-face {
-  font-family: 'Cormorant Garamond';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/CormorantGaramond-Regular.woff2') format('woff2');
-}
-
 /* Estilos globales personalizados */
 .font-serif {
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'Cormorant Garamond', 'Times New Roman', serif;
 }
 
 /* Animaciones suaves */
