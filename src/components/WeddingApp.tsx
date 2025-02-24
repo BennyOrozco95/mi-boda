@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Heart } from 'lucide-react';
+import { Heart, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import Image from 'next/image';
 
 interface TimeLeft {
@@ -17,6 +17,9 @@ const WeddingApp: React.FC = () => {
     seconds: 0
   });
   const audioRef = useRef<HTMLAudioElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [volume, setVolume] = useState(0.3);
 
   useEffect(() => {
     const calculateTimeLeft = (): void => {
@@ -39,8 +42,10 @@ const WeddingApp: React.FC = () => {
 
     // Autoplay music when page loads
     if (audioRef.current) {
-      audioRef.current.volume = 0.3; // Set volume to 30%
-      audioRef.current.play().catch(error => {
+      audioRef.current.volume = volume;
+      audioRef.current.play().then(() => {
+        setIsPlaying(true);
+      }).catch(error => {
         console.log('Autoplay was prevented. User interaction required.');
       });
     }
@@ -53,13 +58,77 @@ const WeddingApp: React.FC = () => {
     };
   }, []);
 
+  const togglePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+        setIsPlaying(false);
+      } else {
+        audioRef.current.play();
+        setIsPlaying(true);
+      }
+    }
+  };
+
+  const toggleMute = () => {
+    if (audioRef.current) {
+      if (isMuted) {
+        audioRef.current.volume = volume;
+        setIsMuted(false);
+      } else {
+        audioRef.current.volume = 0;
+        setIsMuted(true);
+      }
+    }
+  };
+
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVolume = parseFloat(e.target.value);
+    if (audioRef.current) {
+      audioRef.current.volume = newVolume;
+      setVolume(newVolume);
+      setIsMuted(newVolume === 0);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-white font-serif">
       {/* Audio Player */}
-      <audio ref={audioRef} loop>
-        <source src="/music/love-song.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <div className="fixed bottom-4 right-4 z-50 bg-white/80 backdrop-blur-sm rounded-full shadow-lg p-2">
+        <div className="flex items-center space-x-2">
+          <audio ref={audioRef} loop>
+            <source src="/music/love-song.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
+          
+          {/* Play/Pause Button */}
+          <button 
+            onClick={togglePlayPause} 
+            className="hover:bg-stone-100 p-2 rounded-full transition-colors"
+          >
+            {isPlaying ? <Pause size={24} /> : <Play size={24} />}
+          </button>
+          
+          {/* Volume Control */}
+          <div className="flex items-center space-x-2">
+            <button 
+              onClick={toggleMute} 
+              className="hover:bg-stone-100 p-2 rounded-full transition-colors"
+            >
+              {isMuted ? <VolumeX size={24} /> : <Volume2 size={24} />}
+            </button>
+            <input 
+              type="range" 
+              min="0" 
+              max="1" 
+              step="0.1" 
+              value={isMuted ? 0 : volume}
+              onChange={handleVolumeChange}
+              className="w-24 h-2 bg-stone-200 rounded-full appearance-none cursor-pointer"
+            />
+          </div>
+        </div>
+      </div>
 
       {/* Hero Section */}
       <section className="relative h-screen">
