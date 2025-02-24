@@ -2,12 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Variables globales */
 :root {
   --background: #ffffff;
   --foreground: #000000;
 }
 
+/* Estilos base */
 body {
-  color: rgb(var(--foreground));
-  background: rgb(var(--background));
+  margin: 0;
+  padding: 0;
+  color: var(--foreground);
+  background: var(--background);
+}
+
+/* Estilos para fuentes */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/CormorantGaramond-Regular.woff2') format('woff2');
+}
+
+/* Estilos globales personalizados */
+.font-serif {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Animaciones suaves */
+.transition {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Estilos para botones */
+button {
+  cursor: pointer;
+  outline: none;
 }
