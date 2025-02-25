@@ -23,7 +23,7 @@ const WeddingApp: React.FC = () => {
   // Countdown Timer Setup
   useEffect(() => {
     const calculateTimeLeft = (): void => {
-      const weddingDate: number = new Date('2025-03-25T01:00:00').getTime();
+      const weddingDate: number = new Date('2025-02-25T01:00:00').getTime();
       const now: number = new Date().getTime();
       const difference: number = weddingDate - now;
       if (difference > 0) {
@@ -287,115 +287,115 @@ const WeddingApp: React.FC = () => {
 
       {/* Timeline Section */}
       <section className="py-12 sm:py-16 px-4 bg-stone-100">
-        <h2 className="text-xl sm:text-2xl italic text-center text-stone-500 mb-10 sm:mb-12 font-light">Minuto a Minuto</h2>
-        <div className="max-w-xs sm:max-w-md mx-auto space-y-5 sm:space-y-6">
+        <h2 className="text-2xl sm:text-3xl italic text-center text-stone-500 mb-12 sm:mb-14 font-light">Minuto a Minuto</h2>
+        <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               06:00 p.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/church.png" alt="Church" width={66} height={66} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/church-icon.png" alt="Church" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Ceremonia Religiosa</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Ceremonia Religiosa</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               08:00 p.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/champagne.png" alt="Cocktail" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/cocktail-icon.png" alt="Cocktail" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Coctel de Bienvenida</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Coctel de Bienvenida</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               08:30 p.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/dance.png" alt="Music" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/music-icon.png" alt="Music" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Evento Social</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Evento Social</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               09:00 p.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/menu.png" alt="Dinner" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/dinner-icon.png" alt="Dinner" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Cena a 3 tiempos</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Cena a 3 tiempos</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               10:00 p.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/balloons.png" alt="Heart" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/heart-icon.png" alt="Heart" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Primer Baile</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Primer Baile</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               10:30 p.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/confetti.png" alt="Dance" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/dance-icon.png" alt="Dance" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Se abre pista</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Se abre pista</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               11:30 p.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/toast.png" alt="Party" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/party-icon.png" alt="Party" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Ronda de shots</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Ronda de shots</div>
           </div>
         </div>
       </section>
 
       {/* Additional Timeline Items */}
-      <section className="py-6 sm:py-8 px-4 bg-stone-100">
-        <div className="max-w-xs sm:max-w-md mx-auto space-y-5 sm:space-y-6">
+      <section className="py-8 sm:py-10 px-4 bg-stone-100">
+        <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               12:00 a.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/menu.png" alt="Light" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/light-icon.png" alt="Light" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Luces & Fuegos</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Luces & Fuegos</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               02:00 a.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/menu.png" alt="Food" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/food-icon.png" alt="Food" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Cena de madrugada</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Cena de madrugada</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-400 text-[10px] sm:text-xs w-20 text-right">
+            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
               03:00 a.m.
             </div>
-            <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/menu.png" alt="End" width={16} height={16} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
+              <Image src="/images/end-icon.png" alt="End" width={24} height={24} />
             </div>
-            <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Fin del Evento</div>
+            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Fin del Evento</div>
           </div>
         </div>
       </section>
-
+      
       {/* Video Section */}
       <section className="bg-white">
         <div className="relative w-full h-40 sm:h-56 md:h-64 lg:h-80 overflow-hidden">
