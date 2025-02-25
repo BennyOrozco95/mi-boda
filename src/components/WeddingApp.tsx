@@ -85,7 +85,7 @@ const WeddingApp: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen font-serif text-stone-700 bg-white">
       {/* Hero Section */}
-      <section className="relative h-[85vh] sm:h-screen">
+      <section className="relative h-screen">
         <div className="relative w-full h-full">
           <Image
             src="/images/IMG_3281.jpg"
@@ -93,7 +93,7 @@ const WeddingApp: React.FC = () => {
             fill
             priority
             className="object-cover"
-            objectPosition="center center" // Puedes ajustar esto para cada imagen
+            objectPosition="center center"
           />
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
@@ -162,13 +162,13 @@ const WeddingApp: React.FC = () => {
 
       {/* Full-width image section */}
       <section className="w-full">
-        <div className="relative w-full h-40 sm:h-56 md:h-72 lg:h-96">
+        <div className="relative w-full aspect-[2/1] md:aspect-[3/1]">
           <Image
             src="/images/IMG_3286.jpg"
             alt="Couple walking"
             fill
             className="object-cover"
-            objectPosition="50% 30%" // Ajusta verticalmente para mostrar más arriba
+            objectPosition="50% 30%" 
           />
         </div>
       </section>
@@ -237,13 +237,13 @@ const WeddingApp: React.FC = () => {
 
       {/* Drinking Toast Photo */}
       <section className="bg-white">
-        <div className="relative w-full h-48 sm:h-56 md:h-72 lg:h-96">
+        <div className="relative w-full aspect-[3/2]">
           <Image
             src="/images/IMG_3336.jpg"
             alt="Couple toasting"
             fill
             className="object-cover"
-            objectPosition="center 35%" // Enfocado más hacia la parte superior
+            objectPosition="center 35%" 
           />
         </div>
       </section>
@@ -516,13 +516,13 @@ const WeddingApp: React.FC = () => {
 
       {/* Newspaper Section */}
       <section className="py-8 sm:py-10 bg-white">
-        <div className="relative w-full aspect-[3/2] max-h-80">
+        <div className="relative w-full mx-auto max-w-2xl aspect-video">
           <Image
             src="/images/IMG_3360.jpg" 
             alt="Wedding Newspaper"
             fill
             className="object-contain"
-            objectPosition="center center" // Centrado para mostrar todo el contenido
+            objectPosition="center center"
           />
         </div>
       </section>
