@@ -294,7 +294,7 @@ const WeddingApp: React.FC = () => {
               06:00 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/church.png" alt="Church" width={16} height={16} />
+              <Image src="/images/church.png" alt="Church" width={66} height={66} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Ceremonia Religiosa</div>
           </div>
