@@ -93,7 +93,7 @@ const WeddingApp: React.FC = () => {
             fill
             priority
             className="object-cover"
-            objectPosition="center center"
+            objectPosition="70% 20%"
           />
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
