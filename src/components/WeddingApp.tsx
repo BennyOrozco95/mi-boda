@@ -23,7 +23,7 @@ const WeddingApp: React.FC = () => {
   // Countdown Timer Setup
   useEffect(() => {
     const calculateTimeLeft = (): void => {
-      const weddingDate: number = new Date('2025-03-24T18:00:00').getTime();
+      const weddingDate: number = new Date('2025-03-25T01:00:00').getTime();
       const now: number = new Date().getTime();
       const difference: number = weddingDate - now;
       if (difference > 0) {
@@ -42,9 +42,13 @@ const WeddingApp: React.FC = () => {
     };
   }, []);
 
-  // Audio player setup
+  // Audio player setup - only plays when button is clicked
   useEffect(() => {
     if (audioRef.current) {
+      // Set initial volume
+      audioRef.current.volume = 0.2;
+      
+      // Add progress tracking
       const updateProgress = () => {
         if (audioRef.current) {
           const duration = audioRef.current.duration;
@@ -57,30 +61,11 @@ const WeddingApp: React.FC = () => {
 
       audioRef.current.addEventListener('timeupdate', updateProgress);
       
-      const tryAutoplay = () => {
-        if (audioRef.current) {
-          audioRef.current.volume = 0.2;
-          audioRef.current.play().then(() => {
-            setIsPlaying(true);
-          }).catch(error => {
-            console.log('Autoplay was prevented', error);
-          });
-        }
-      };
-      
-      const handleFirstInteraction = () => {
-        tryAutoplay();
-        document.removeEventListener('click', handleFirstInteraction);
-      };
-      
-      document.addEventListener('click', handleFirstInteraction);
-      
       return () => {
         if (audioRef.current) {
           audioRef.current.pause();
           audioRef.current.removeEventListener('timeupdate', updateProgress);
         }
-        document.removeEventListener('click', handleFirstInteraction);
       };
     }
   }, []);
@@ -309,7 +294,7 @@ const WeddingApp: React.FC = () => {
               06:00 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/church-icon.png" alt="Church" width={16} height={16} />
+              <Image src="/images/church.png" alt="Church" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Ceremonia Religiosa</div>
           </div>
@@ -319,7 +304,7 @@ const WeddingApp: React.FC = () => {
               08:00 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/cocktail-icon.png" alt="Cocktail" width={16} height={16} />
+              <Image src="/images/champagne.png" alt="Cocktail" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Coctel de Bienvenida</div>
           </div>
@@ -329,7 +314,7 @@ const WeddingApp: React.FC = () => {
               08:30 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/music-icon.png" alt="Music" width={16} height={16} />
+              <Image src="/images/dance.png" alt="Music" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Evento Social</div>
           </div>
@@ -339,7 +324,7 @@ const WeddingApp: React.FC = () => {
               09:00 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/dinner-icon.png" alt="Dinner" width={16} height={16} />
+              <Image src="/images/menu.png" alt="Dinner" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Cena a 3 tiempos</div>
           </div>
@@ -349,7 +334,7 @@ const WeddingApp: React.FC = () => {
               10:00 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/heart-icon.png" alt="Heart" width={16} height={16} />
+              <Image src="/images/balloons.png" alt="Heart" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Primer Baile</div>
           </div>
@@ -359,7 +344,7 @@ const WeddingApp: React.FC = () => {
               10:30 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/dance-icon.png" alt="Dance" width={16} height={16} />
+              <Image src="/images/confetti.png" alt="Dance" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Se abre pista</div>
           </div>
@@ -369,7 +354,7 @@ const WeddingApp: React.FC = () => {
               11:30 p.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/party-icon.png" alt="Party" width={16} height={16} />
+              <Image src="/images/toast.png" alt="Party" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Ronda de shots</div>
           </div>
@@ -384,7 +369,7 @@ const WeddingApp: React.FC = () => {
               12:00 a.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/light-icon.png" alt="Light" width={16} height={16} />
+              <Image src="/images/menu.png" alt="Light" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Luces & Fuegos</div>
           </div>
@@ -394,7 +379,7 @@ const WeddingApp: React.FC = () => {
               02:00 a.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/food-icon.png" alt="Food" width={16} height={16} />
+              <Image src="/images/menu.png" alt="Food" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Cena de madrugada</div>
           </div>
@@ -404,7 +389,7 @@ const WeddingApp: React.FC = () => {
               03:00 a.m.
             </div>
             <div className="w-5 h-5 mx-3 flex items-center justify-center">
-              <Image src="/images/end-icon.png" alt="End" width={16} height={16} />
+              <Image src="/images/menu.png" alt="End" width={16} height={16} />
             </div>
             <div className="text-[10px] sm:text-xs md:text-sm text-stone-600">Fin del Evento</div>
           </div>
