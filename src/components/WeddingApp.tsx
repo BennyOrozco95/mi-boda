@@ -103,7 +103,7 @@ const WeddingApp: React.FC = () => {
       <section className="relative h-screen">
         <div className="relative w-full h-full">
           <Image
-            src="/images/hero-background.jpg"
+            src="/images/IMG_3281.jpg"
             alt="Wedding background"
             fill
             priority
@@ -178,7 +178,7 @@ const WeddingApp: React.FC = () => {
       <section className="w-full">
         <div className="relative w-full h-48 sm:h-64 md:h-72 lg:h-96">
           <Image
-            src="/images/couple-walking.jpg"
+            src="/images/IMG_3286.jpg"
             alt="Couple walking"
             fill
             className="object-cover"
@@ -223,7 +223,7 @@ const WeddingApp: React.FC = () => {
         <div className="grid grid-cols-3 gap-1">
           <div className="relative h-28 sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/images/couple-photo-1.jpg"
+              src="/images/IMG_3289.jpg"
               alt="Couple photo"
               fill
               className="object-cover"
@@ -231,7 +231,7 @@ const WeddingApp: React.FC = () => {
           </div>
           <div className="relative h-28 sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/images/bouquet-photo.jpg"
+              src="/images/IMG_3304.jpg"
               alt="Bouquet"
               fill
               className="object-cover"
@@ -239,7 +239,7 @@ const WeddingApp: React.FC = () => {
           </div>
           <div className="relative h-28 sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/images/couple-photo-2.jpg"
+              src="/images/IMG_3314.jpg"
               alt="Couple walking"
               fill
               className="object-cover"
@@ -252,7 +252,7 @@ const WeddingApp: React.FC = () => {
       <section className="py-6 bg-white">
         <div className="relative w-full h-40 sm:h-56 md:h-72 lg:h-96">
           <Image
-            src="/images/couple-toast.jpg"
+            src="/images/IMG_3336.jpg"
             alt="Couple toasting"
             fill
             className="object-cover"
@@ -416,7 +416,7 @@ const WeddingApp: React.FC = () => {
         <div className="relative w-full h-48 sm:h-56 md:h-64 lg:h-80 overflow-hidden">
           <div className="absolute inset-0 flex justify-center items-center">
             <Image
-              src="/images/cathedral-view.jpg"
+              src="/images/IMG_3349.jpg"
               alt="Cathedral view"
               fill
               className="object-cover"
@@ -530,7 +530,7 @@ const WeddingApp: React.FC = () => {
       <section className="py-10 bg-white">
         <div className="relative w-full h-56 sm:h-64 md:h-72 lg:h-80">
           <Image
-            src="/images/newspaper.jpg" 
+            src="/images/IMG_3360.jpg" 
             alt="Wedding Newspaper"
             fill
             className="object-contain"
