@@ -92,9 +92,11 @@ const WeddingApp: React.FC = () => {
             alt="Wedding background"
             fill
             priority
+            quality={100}
             className="object-cover"
-            objectPosition="85% CENTER"
+            objectPosition="85% center"
             sizes="100vw"
+            unoptimized
           />
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
@@ -168,9 +170,11 @@ const WeddingApp: React.FC = () => {
             src="/images/IMG_3286.jpg"
             alt="Couple walking"
             fill
+            quality={100}
             className="object-cover"
             objectPosition="50% 30%" 
             sizes="100vw"
+            unoptimized
           />
         </div>
       </section>
@@ -215,7 +219,11 @@ const WeddingApp: React.FC = () => {
               src="/images/IMG_3289.jpg"
               alt="Couple photo"
               fill
+              quality={100}
+              unoptimized
               className="object-cover"
+              objectPosition="center 25%"
+              sizes="(max-width: 640px) 33vw, (max-width: 768px) 33vw, 33vw"
             />
           </div>
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
@@ -223,7 +231,11 @@ const WeddingApp: React.FC = () => {
               src="/images/IMG_3304.jpg"
               alt="Bouquet"
               fill
+              quality={100}
+              unoptimized
               className="object-cover"
+              objectPosition="center 40%"
+              sizes="(max-width: 640px) 33vw, (max-width: 768px) 33vw, 33vw"
             />
           </div>
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
@@ -231,7 +243,11 @@ const WeddingApp: React.FC = () => {
               src="/images/IMG_3314.jpg"
               alt="Couple walking"
               fill
+              quality={100}
+              unoptimized
               className="object-cover"
+              objectPosition="60% center"
+              sizes="(max-width: 640px) 33vw, (max-width: 768px) 33vw, 33vw"
             />
           </div>
         </div>
@@ -244,6 +260,8 @@ const WeddingApp: React.FC = () => {
             src="/images/IMG_3336.jpg"
             alt="Couple toasting"
             fill
+            quality={100}
+            unoptimized
             className="object-cover"
             objectPosition="center 35%" 
             sizes="100vw"
@@ -262,9 +280,14 @@ const WeddingApp: React.FC = () => {
               <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Las Fuentes</p>
               <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-1">Zapopan, Jalisco</p>
               <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-4">06:00 p.m.</p>
-              <button className="px-4 py-1.5 bg-stone-100 border border-stone-200 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs tracking-wide">
+              <a 
+                href="https://maps.app.goo.gl/MxYkNpTJQKgQZk4o6" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-1.5 bg-stone-100 border border-stone-200 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
+              >
                 CÓMO LLEGAR
-              </button>
+              </a>
             </div>
             
             <div className="hidden md:flex justify-center items-center md:w-2/12">
@@ -273,6 +296,7 @@ const WeddingApp: React.FC = () => {
                 alt="Geometric divider"
                 width={60}
                 height={60}
+                quality={100}
               />
             </div>
             
@@ -283,9 +307,14 @@ const WeddingApp: React.FC = () => {
               <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Las Fuentes, 45070</p>
               <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-1">Zapopan, Jal.</p>
               <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-4">08:00 p.m.</p>
-              <button className="px-4 py-1.5 bg-stone-100 border border-stone-200 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs tracking-wide">
+              <a 
+                href="https://maps.app.goo.gl/vWHBCGS3wEgqB3JV7" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-block px-4 py-1.5 bg-stone-100 border border-stone-200 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
+              >
                 CÓMO LLEGAR
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -300,7 +329,7 @@ const WeddingApp: React.FC = () => {
               06:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/church-icon.png" alt="Church" width={24} height={24} />
+              <Image src="/images/church-icon.png" alt="Church" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Ceremonia Religiosa</div>
           </div>
@@ -310,7 +339,7 @@ const WeddingApp: React.FC = () => {
               08:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/cocktail-icon.png" alt="Cocktail" width={24} height={24} />
+              <Image src="/images/cocktail-icon.png" alt="Cocktail" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Coctel de Bienvenida</div>
           </div>
@@ -320,7 +349,7 @@ const WeddingApp: React.FC = () => {
               08:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/music-icon.png" alt="Music" width={24} height={24} />
+              <Image src="/images/music-icon.png" alt="Music" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Evento Social</div>
           </div>
@@ -330,7 +359,7 @@ const WeddingApp: React.FC = () => {
               09:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/dinner-icon.png" alt="Dinner" width={24} height={24} />
+              <Image src="/images/dinner-icon.png" alt="Dinner" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Cena a 3 tiempos</div>
           </div>
@@ -340,7 +369,7 @@ const WeddingApp: React.FC = () => {
               10:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/heart-icon.png" alt="Heart" width={24} height={24} />
+              <Image src="/images/heart-icon.png" alt="Heart" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Primer Baile</div>
           </div>
@@ -350,7 +379,7 @@ const WeddingApp: React.FC = () => {
               10:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/dance-icon.png" alt="Dance" width={24} height={24} />
+              <Image src="/images/dance-icon.png" alt="Dance" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Se abre pista</div>
           </div>
@@ -360,7 +389,7 @@ const WeddingApp: React.FC = () => {
               11:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/party-icon.png" alt="Party" width={24} height={24} />
+              <Image src="/images/party-icon.png" alt="Party" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Ronda de shots</div>
           </div>
@@ -375,7 +404,7 @@ const WeddingApp: React.FC = () => {
               12:00 a.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/light-icon.png" alt="Light" width={24} height={24} />
+              <Image src="/images/light-icon.png" alt="Light" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Luces & Fuegos</div>
           </div>
@@ -385,7 +414,7 @@ const WeddingApp: React.FC = () => {
               02:00 a.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/food-icon.png" alt="Food" width={24} height={24} />
+              <Image src="/images/food-icon.png" alt="Food" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Cena de madrugada</div>
           </div>
@@ -395,7 +424,7 @@ const WeddingApp: React.FC = () => {
               03:00 a.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/end-icon.png" alt="End" width={24} height={24} />
+              <Image src="/images/end-icon.png" alt="End" width={24} height={24} quality={100} />
             </div>
             <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Fin del Evento</div>
           </div>
@@ -410,7 +439,11 @@ const WeddingApp: React.FC = () => {
               src="/images/IMG_3349.jpg"
               alt="Cathedral view"
               fill
+              quality={100}
+              unoptimized
               className="object-cover"
+              objectPosition="40% 30%"
+              sizes="100vw"
             />
             <div className="absolute inset-0 flex items-center justify-center">
               <span className="text-white text-3xl sm:text-4xl font-light">K<span className="text-xl sm:text-2xl">&</span>A</span>
@@ -447,6 +480,7 @@ const WeddingApp: React.FC = () => {
               width={100}
               height={35}
               className="mx-auto mb-3 sm:mb-4"
+              quality={100}
             />
             <p className="text-[10px] sm:text-xs text-stone-600 mb-2 sm:mb-3">Evento: 02960421</p>
             <a 
@@ -466,6 +500,7 @@ const WeddingApp: React.FC = () => {
               width={100}
               height={35}
               className="mx-auto mb-3 sm:mb-4"
+              quality={100}
             />
             <p className="text-[10px] sm:text-xs text-stone-600">Sofía Sandoval Rodríguez</p>
             <p className="text-[10px] sm:text-xs text-stone-600">Cuenta: 47986421</p>
@@ -480,6 +515,7 @@ const WeddingApp: React.FC = () => {
               width={100}
               height={35}
               className="mx-auto mb-3 sm:mb-4"
+              quality={100}
             />
             <a 
               href="https://www.amazon.com.mx/" 
@@ -501,6 +537,7 @@ const WeddingApp: React.FC = () => {
             alt="Envelope"
             width={30}
             height={30}
+            quality={100}
           />
         </div>
         <h3 className="text-xs sm:text-sm uppercase tracking-wide text-stone-600 mb-2">LLUVIA DE SOBRES</h3>
@@ -523,6 +560,7 @@ const WeddingApp: React.FC = () => {
             alt="No Kids"
             width={50}
             height={25}
+            quality={100}
           />
         </div>
       </section>
@@ -534,6 +572,8 @@ const WeddingApp: React.FC = () => {
             src="/images/IMG_3360.jpg" 
             alt="Wedding Newspaper"
             fill
+            quality={100}
+            unoptimized
             className="object-contain"
             objectPosition="center center"
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -558,14 +598,26 @@ const WeddingApp: React.FC = () => {
             width={120}
             height={120}
             className="mx-auto mb-6 sm:mb-8"
+            quality={100}
+            unoptimized
           />
           <div className="space-y-3">
-            <button className="w-full px-3 sm:px-4 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs">
+            <a 
+              href="https://wa.me/523334567890?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block w-full px-3 sm:px-4 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               CONFIRMAR ASISTENCIA
-            </button>
-            <button className="w-full px-3 sm:px-4 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs">
+            </a>
+            <a 
+              href="https://wa.me/523334567890" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="block w-full px-3 sm:px-4 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               ENVIAR MENSAJE
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -581,9 +633,14 @@ const WeddingApp: React.FC = () => {
             <p className="text-[10px] sm:text-xs text-stone-600">Colonia las Villas</p>
             <p className="text-[10px] sm:text-xs text-stone-600">Palomar, Jal.</p>
             <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 8000 0770</p>
-            <button className="px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs">
+            <a 
+              href="https://maps.app.goo.gl/Fwi59pjqWAPPjHxz8" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               CÓMO LLEGAR
-            </button>
+            </a>
           </div>
           
           <div className="text-center">
@@ -592,9 +649,14 @@ const WeddingApp: React.FC = () => {
             <p className="text-[10px] sm:text-xs text-stone-600">Paisajes del Tesoro</p>
             <p className="text-[10px] sm:text-xs text-stone-600">Guadalajara, Jal.</p>
             <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 3864 1234</p>
-            <button className="px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs">
+            <a 
+              href="https://maps.app.goo.gl/RHsfBVUWdvAMYyFu7" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               CÓMO LLEGAR
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -608,9 +670,14 @@ const WeddingApp: React.FC = () => {
             <p className="text-[10px] sm:text-xs text-stone-600">La Guadalupana</p>
             <p className="text-[10px] sm:text-xs text-stone-600">Palomar, Jal.</p>
             <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 8964 8000</p>
-            <button className="px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs">
+            <a 
+              href="https://maps.app.goo.gl/ukqVYHn1mpTPnz6t9" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               CÓMO LLEGAR
-            </button>
+            </a>
           </div>
           
           <div className="text-center">
@@ -619,9 +686,14 @@ const WeddingApp: React.FC = () => {
             <p className="text-[10px] sm:text-xs text-stone-600">La Guadalupana</p>
             <p className="text-[10px] sm:text-xs text-stone-600">Guadalajara, Jal.</p>
             <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 4077 0303</p>
-            <button className="px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs">
+            <a 
+              href="https://maps.app.goo.gl/jvmdAkuAU3kR8tPT9" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               CÓMO LLEGAR
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -635,6 +707,7 @@ const WeddingApp: React.FC = () => {
               alt="Instagram"
               width={28}
               height={28}
+              quality={100}
             />
           </div>
           <div>
@@ -646,7 +719,10 @@ const WeddingApp: React.FC = () => {
 
       {/* Footer */}
       <footer className="py-8 sm:py-10 px-4 text-center text-stone-400 text-[10px] sm:text-xs bg-gray-50">
-        <button className="mb-4 sm:mb-6 hover:text-stone-500 transition-colors">
+        <button 
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="mb-4 sm:mb-6 hover:text-stone-500 transition-colors"
+        >
           <div className="flex flex-col items-center">
             <div className="transform rotate-180 text-base sm:text-lg">▼</div>
             <p className="uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[8px] sm:text-xs mt-1">BACK TO TOP</p>
