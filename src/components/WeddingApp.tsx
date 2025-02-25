@@ -23,7 +23,7 @@ const WeddingApp: React.FC = () => {
   // Countdown Timer Setup
   useEffect(() => {
     const calculateTimeLeft = (): void => {
-      const weddingDate: number = new Date('2025-02-25T01:00:00').getTime();
+      const weddingDate: number = new Date('2025-05-17T13:30:00').getTime();
       const now: number = new Date().getTime();
       const difference: number = weddingDate - now;
       if (difference > 0) {
@@ -99,7 +99,7 @@ const WeddingApp: React.FC = () => {
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-3 sm:px-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8 md:mb-12 font-light">
-            ALEXA<span className="font-light">&</span>MARCO
+            PAOLA<span className="font-light">&</span>RUBEN
           </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] sm:tracking-[0.3em] mb-8 sm:mb-12 md:mb-16">SAVE THE DATE</p>
           
