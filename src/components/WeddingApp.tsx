@@ -85,7 +85,7 @@ const WeddingApp: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen font-serif text-stone-700 bg-white">
       {/* Hero Section */}
-      <section className="relative h-screen">
+      <section className="relative w-full" style={{ height: "calc(100vh - 0px)" }}>
         <div className="relative w-full h-full">
           <Image
             src="/images/IMG_3281.jpg"
@@ -93,7 +93,8 @@ const WeddingApp: React.FC = () => {
             fill
             priority
             className="object-cover"
-            objectPosition="70% 20%"
+            objectPosition="center center"
+            sizes="100vw"
           />
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
@@ -162,13 +163,14 @@ const WeddingApp: React.FC = () => {
 
       {/* Full-width image section */}
       <section className="w-full">
-        <div className="relative w-full aspect-[2/1] md:aspect-[3/1]">
+        <div className="relative w-full" style={{ height: "400px" }}>
           <Image
             src="/images/IMG_3286.jpg"
             alt="Couple walking"
             fill
             className="object-cover"
             objectPosition="50% 30%" 
+            sizes="100vw"
           />
         </div>
       </section>
@@ -237,13 +239,14 @@ const WeddingApp: React.FC = () => {
 
       {/* Drinking Toast Photo */}
       <section className="bg-white">
-        <div className="relative w-full aspect-[3/2]">
+        <div className="relative w-full" style={{ height: "500px" }}>
           <Image
             src="/images/IMG_3336.jpg"
             alt="Couple toasting"
             fill
             className="object-cover"
             objectPosition="center 35%" 
+            sizes="100vw"
           />
         </div>
       </section>
@@ -446,9 +449,14 @@ const WeddingApp: React.FC = () => {
               className="mx-auto mb-3 sm:mb-4"
             />
             <p className="text-[10px] sm:text-xs text-stone-600 mb-2 sm:mb-3">Evento: 02960421</p>
-            <button className="px-2 sm:px-3 py-1 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs">
+            <a 
+              href="https://www.liverpool.com.mx/tienda/home" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-2 sm:px-3 py-1 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               IR AL SITIO
-            </button>
+            </a>
           </div>
           
           <div className="text-center">
@@ -473,9 +481,14 @@ const WeddingApp: React.FC = () => {
               height={35}
               className="mx-auto mb-3 sm:mb-4"
             />
-            <button className="px-2 sm:px-3 py-1 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs">
+            <a 
+              href="https://www.amazon.com.mx/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-block px-2 sm:px-3 py-1 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+            >
               IR AL SITIO
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -516,13 +529,14 @@ const WeddingApp: React.FC = () => {
 
       {/* Newspaper Section */}
       <section className="py-8 sm:py-10 bg-white">
-        <div className="relative w-full mx-auto max-w-2xl aspect-video">
+        <div className="relative w-full mx-auto max-w-2xl" style={{ height: "350px" }}>
           <Image
             src="/images/IMG_3360.jpg" 
             alt="Wedding Newspaper"
             fill
             className="object-contain"
             objectPosition="center center"
+            sizes="(max-width: 768px) 100vw, 50vw"
           />
         </div>
       </section>
