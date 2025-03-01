@@ -88,7 +88,7 @@ const WeddingApp: React.FC = () => {
       <section className="relative w-full" style={{ height: "calc(100vh - 0px)" }}>
         <div className="relative w-full h-full">
           <Image
-            src="/images/IMG_33349.jpg"
+            src="/images/IMG_3349.jpg"
             alt="Wedding background"
             fill
             priority
