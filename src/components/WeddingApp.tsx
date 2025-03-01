@@ -234,7 +234,7 @@ const WeddingApp: React.FC = () => {
       <section className="relative w-full" style={{ height: "calc(70vh - 0px)" }}>
         <div className="relative w-full h-full">
           <Image
-            src="/api/placeholder/1200/800"
+            src="/images/IMG_3349.jpg/1200/800"
             alt="Wedding background"
             fill
             priority
@@ -314,7 +314,7 @@ const WeddingApp: React.FC = () => {
       <section className="w-full">
         <div className="relative w-full" style={{ height: "400px" }}>
           <Image
-            src="/api/placeholder/1200/400"
+            src="/images/IMG_3360.jpg/1200/400"
             alt="Couple walking"
             fill
             quality={100}
@@ -363,7 +363,7 @@ const WeddingApp: React.FC = () => {
         <div className="grid grid-cols-3 gap-px">
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/api/placeholder/400/400"
+              src="/images/IMG_3336.jpg/400/400"
               alt="Couple photo"
               fill
               quality={100}
@@ -375,7 +375,7 @@ const WeddingApp: React.FC = () => {
           </div>
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/api/placeholder/400/400"
+              src="/images/IMG_3314.jpg/400/400"
               alt="Bouquet"
               fill
               quality={100}
@@ -387,7 +387,7 @@ const WeddingApp: React.FC = () => {
           </div>
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/api/placeholder/400/400"
+              src="/images/IMG_3304.jpg/400/400"
               alt="Couple walking"
               fill
               quality={100}
@@ -404,7 +404,7 @@ const WeddingApp: React.FC = () => {
       <section style={{ backgroundColor: colors.background }}>
         <div className="relative w-full" style={{ height: "500px" }}>
           <Image
-            src="/api/placeholder/1200/500"
+            src="/images/IMG_3289.jpg/1200/500"
             alt="Couple toasting"
             fill
             quality={100}
@@ -589,7 +589,7 @@ const WeddingApp: React.FC = () => {
         <div className="relative w-full h-40 sm:h-56 md:h-64 lg:h-80 overflow-hidden">
           <div className="absolute inset-0 flex justify-center items-center">
             <Image
-              src="/api/placeholder/1200/800"
+              src="/images/IMG_3286.jpg/1200/800"
               alt="Cathedral view"
               fill
               quality={100}
@@ -697,7 +697,7 @@ const WeddingApp: React.FC = () => {
       <section className="py-8 sm:py-10" style={{ backgroundColor: colors.background }}>
         <div className="relative w-full mx-auto max-w-2xl" style={{ height: "350px" }}>
           <Image
-            src="/api/placeholder/800/350" 
+            src="/images/IMG_3281.jpg/800/350" 
             alt="Wedding Newspaper"
             fill
             quality={100}
