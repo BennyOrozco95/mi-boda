@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause } from 'lucide-react';
+import React, { useState, useEffect, useRef, createContext, useContext } from 'react';
+import { Play, Pause, Settings } from 'lucide-react';
 import Image from 'next/image';
 
+// Definir interfaces
 interface TimeLeft {
   days: number;
   hours: number;
@@ -9,6 +10,150 @@ interface TimeLeft {
   seconds: number;
 }
 
+interface ColorTheme {
+  primary: string;
+  secondary: string;
+  background: string;
+  contrast: string;
+  accent: string;
+}
+
+interface ColorThemeContextType {
+  colors: ColorTheme;
+  updateColor: (colorKey: keyof ColorTheme, value: string) => void;
+  isColorPanelOpen: boolean;
+  toggleColorPanel: () => void;
+}
+
+// Crear contexto para los colores
+const ColorThemeContext = createContext<ColorThemeContextType | undefined>(undefined);
+
+// Componente proveedor del tema de colores
+const ColorThemeProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+  const [colors, setColors] = useState<ColorTheme>({
+    primary: '#a85d31',      // Principal - botones, encabezados, elementos destacados
+    secondary: '#e0c9b8',    // Secundario - fondos de secciones, detalles sutiles
+    background: '#f5f0ed',   // Fondo - aspecto limpio y elegante
+    contrast: '#4a2c1d',     // Contraste - textos, bordes
+    accent: '#d97b4a',       // Acento - llamadas a la acción, íconos
+  });
+
+  const [isColorPanelOpen, setIsColorPanelOpen] = useState(false);
+
+  // Establecer variables CSS para colores
+  useEffect(() => {
+    document.documentElement.style.setProperty('--color-primary', colors.primary);
+    document.documentElement.style.setProperty('--color-secondary', colors.secondary);
+    document.documentElement.style.setProperty('--color-background', colors.background);
+    document.documentElement.style.setProperty('--color-contrast', colors.contrast);
+    document.documentElement.style.setProperty('--color-accent', colors.accent);
+    
+    // También actualizar clases específicas de Tailwind dinamicamente
+    document.documentElement.style.setProperty('--stone-500', colors.primary);
+    document.documentElement.style.setProperty('--stone-400', colors.accent);
+    document.documentElement.style.setProperty('--stone-600', colors.contrast);
+    document.documentElement.style.setProperty('--stone-700', colors.contrast);
+    document.documentElement.style.setProperty('--stone-100', colors.secondary);
+    document.documentElement.style.setProperty('--white', colors.background);
+  }, [colors]);
+
+  // Actualizar un color individual
+  const updateColor = (colorKey: keyof ColorTheme, value: string) => {
+    setColors(prev => ({
+      ...prev,
+      [colorKey]: value
+    }));
+  };
+
+  // Alternar panel de colores
+  const toggleColorPanel = () => {
+    setIsColorPanelOpen(prev => !prev);
+  };
+
+  return (
+    <ColorThemeContext.Provider value={{ colors, updateColor, isColorPanelOpen, toggleColorPanel }}>
+      {children}
+    </ColorThemeContext.Provider>
+  );
+};
+
+// Hook personalizado para usar el tema de colores
+const useColorTheme = (): ColorThemeContextType => {
+  const context = useContext(ColorThemeContext);
+  if (context === undefined) {
+    throw new Error('useColorTheme must be used within a ColorThemeProvider');
+  }
+  return context;
+};
+
+// Componente para el panel de administración de colores
+const ColorPanel: React.FC = () => {
+  const { colors, updateColor, isColorPanelOpen, toggleColorPanel } = useColorTheme();
+
+  const colorItems = [
+    { key: 'primary', label: 'Principal', description: 'Botones, encabezados, elementos destacados' },
+    { key: 'secondary', label: 'Secundario', description: 'Fondos de secciones, detalles sutiles' },
+    { key: 'background', label: 'Fondo', description: 'Fondo principal, aspecto limpio' },
+    { key: 'contrast', label: 'Contraste', description: 'Textos, bordes' },
+    { key: 'accent', label: 'Acento', description: 'Llamadas a la acción, íconos' },
+  ] as const;
+
+  if (!isColorPanelOpen) {
+    return (
+      <button 
+        onClick={toggleColorPanel}
+        className="fixed bottom-4 right-4 z-50 p-3 rounded-full shadow-lg"
+        style={{ backgroundColor: colors.primary, color: "#fff" }}
+      >
+        <Settings size={24} />
+      </button>
+    );
+  }
+
+  return (
+    <div className="fixed bottom-4 right-4 z-50 p-4 rounded-lg shadow-lg" style={{ backgroundColor: colors.background }}>
+      <div className="flex justify-between items-center mb-3">
+        <h3 className="font-medium text-sm" style={{ color: colors.contrast }}>Administración de Colores</h3>
+        <button 
+          onClick={toggleColorPanel}
+          className="text-sm py-1 px-2 rounded"
+          style={{ backgroundColor: colors.primary, color: '#fff' }}
+        >
+          Cerrar
+        </button>
+      </div>
+      
+      <div className="space-y-3">
+        {colorItems.map((item) => (
+          <div key={item.key} className="flex flex-col">
+            <div className="flex justify-between items-center">
+              <label className="text-xs" style={{ color: colors.contrast }}>{item.label}</label>
+              <span className="text-xs" style={{ color: colors.contrast }}>{colors[item.key]}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <input
+                type="color"
+                value={colors[item.key]}
+                onChange={(e) => updateColor(item.key, e.target.value)}
+                className="w-8 h-8 border-0 p-0 cursor-pointer"
+              />
+              <input
+                type="text"
+                value={colors[item.key]}
+                onChange={(e) => updateColor(item.key, e.target.value)}
+                className="flex-1 text-xs p-1 border rounded"
+                style={{ borderColor: colors.secondary, color: colors.contrast }}
+              />
+            </div>
+            <p className="text-xs opacity-70 mt-1" style={{ color: colors.contrast }}>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+// Componente principal de la aplicación
 const WeddingApp: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<TimeLeft>({
     days: 26,
@@ -19,6 +164,7 @@ const WeddingApp: React.FC = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioProgress, setAudioProgress] = useState(0);
+  const { colors } = useColorTheme();
 
   // Countdown Timer Setup
   useEffect(() => {
@@ -83,12 +229,12 @@ const WeddingApp: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen font-serif text-stone-700 bg-white">
+    <div className="flex flex-col min-h-screen font-serif" style={{ color: colors.contrast, backgroundColor: colors.background }}>
       {/* Hero Section */}
       <section className="relative w-full" style={{ height: "calc(70vh - 0px)" }}>
         <div className="relative w-full h-full">
           <Image
-            src="/images/IMG_3349.jpg"
+            src="/api/placeholder/1200/800"
             alt="Wedding background"
             fill
             priority
@@ -98,7 +244,7 @@ const WeddingApp: React.FC = () => {
             sizes="100vw"
             unoptimized
           />
-          <div className="absolute inset-0 bg-black/20"></div>
+          <div className="absolute inset-0" style={{ backgroundColor: `${colors.contrast}30` }}></div>
         </div>
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-3 sm:px-4">
@@ -108,30 +254,30 @@ const WeddingApp: React.FC = () => {
           <p className="text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] sm:tracking-[0.3em] mb-8 sm:mb-12 md:mb-16">SAVE THE DATE</p>
           
           <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-5 max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-lg w-full text-center">
-            <div className="bg-black/30 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2">
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light">{timeLeft.days}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1">DÍAS</div>
+            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
+              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.days}</div>
+              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">DÍAS</div>
             </div>
-            <div className="bg-black/30 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2">
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light">{timeLeft.hours}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1">HORAS</div>
+            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
+              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.hours}</div>
+              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">HORAS</div>
             </div>
-            <div className="bg-black/30 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2">
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light">{timeLeft.minutes}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1">MINUTOS</div>
+            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
+              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.minutes}</div>
+              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">MINUTOS</div>
             </div>
-            <div className="bg-black/30 backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2">
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light">{timeLeft.seconds}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1">SEGUNDOS</div>
+            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
+              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.seconds}</div>
+              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">SEGUNDOS</div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Quote Section with Audio Player */}
-      <section className="py-10 sm:py-12 md:py-16 bg-white">
+      <section className="py-10 sm:py-12 md:py-16" style={{ backgroundColor: colors.background }}>
         <div className="max-w-xs sm:max-w-lg md:max-w-2xl mx-auto text-center px-4 sm:px-6">
-          <div className="italic text-xs sm:text-sm md:text-base lg:text-lg text-stone-600 leading-relaxed">
+          <div className="italic text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed" style={{ color: colors.contrast }}>
             "Cuando te das cuenta de que deseas pasar el resto de tu vida con alguien, 
             quieres que el resto de tu vida <span className="font-semibold">empiece lo antes posible</span>"
           </div>
@@ -146,16 +292,17 @@ const WeddingApp: React.FC = () => {
             <div className="flex items-center space-x-3">
               <button 
                 onClick={togglePlayPause} 
-                className="text-stone-400 hover:text-stone-600 transition-colors p-2"
+                className="p-2 transition-colors"
                 aria-label={isPlaying ? "Pause music" : "Play music"}
+                style={{ color: colors.accent }}
               >
                 {isPlaying ? <Pause size={14} /> : <Play size={14} />}
               </button>
               
-              <div className="w-16 sm:w-24 md:w-36 h-0.5 bg-stone-200 relative">
+              <div className="w-16 sm:w-24 md:w-36 h-0.5 relative" style={{ backgroundColor: colors.secondary }}>
                 <div 
-                  className="absolute top-0 left-0 h-full bg-stone-400" 
-                  style={{ width: `${audioProgress}%` }}
+                  className="absolute top-0 left-0 h-full" 
+                  style={{ width: `${audioProgress}%`, backgroundColor: colors.accent }}
                 ></div>
               </div>
             </div>
@@ -167,7 +314,7 @@ const WeddingApp: React.FC = () => {
       <section className="w-full">
         <div className="relative w-full" style={{ height: "400px" }}>
           <Image
-            src="/images/IMG_3286.jpg"
+            src="/api/placeholder/1200/400"
             alt="Couple walking"
             fill
             quality={100}
@@ -180,43 +327,43 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Date Display in Elegant Typography */}
-      <section className="py-12 sm:py-16 bg-white text-center">
-        <div className="text-3xl sm:text-4xl md:text-5xl text-stone-500 font-light">24</div>
-        <div className="text-3xl sm:text-4xl md:text-5xl text-stone-500 font-light">Mar</div>
-        <div className="text-lg sm:text-xl md:text-2xl text-stone-400 font-light mt-2">2025</div>
+      <section className="py-12 sm:py-16 text-center" style={{ backgroundColor: colors.background }}>
+        <div className="text-3xl sm:text-4xl md:text-5xl font-light" style={{ color: colors.primary }}>24</div>
+        <div className="text-3xl sm:text-4xl md:text-5xl font-light" style={{ color: colors.primary }}>Mar</div>
+        <div className="text-lg sm:text-xl md:text-2xl font-light mt-2" style={{ color: colors.accent }}>2025</div>
       </section>
 
       {/* Family Section */}
-      <section className="py-10 sm:py-12 md:py-16 px-4 bg-stone-100 text-center">
-        <h2 className="text-lg sm:text-xl md:text-2xl text-stone-500 italic mb-8 sm:mb-12 md:mb-16">En compañía de</h2>
+      <section className="py-10 sm:py-12 md:py-16 px-4" style={{ backgroundColor: colors.secondary }}>
+        <h2 className="text-lg sm:text-xl md:text-2xl italic text-center mb-8 sm:mb-12 md:mb-16" style={{ color: colors.primary }}>En compañía de</h2>
         
         <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div>
-            <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide">Padres de la Novia:</h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Mónica Elizabeth Rodríguez López</p>
-            <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Humberto Sandoval García</p>
+            <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide text-center" style={{ color: colors.contrast }}>Padres de la Novia:</h3>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Mónica Elizabeth Rodríguez López</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Humberto Sandoval García</p>
           </div>
           
           <div>
-            <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide">Padres del Novio:</h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Esther Fernández Del Real</p>
-            <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Pedro Ezequiel Montero Carbajal</p>
+            <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide text-center" style={{ color: colors.contrast }}>Padres del Novio:</h3>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Esther Fernández Del Real</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Pedro Ezequiel Montero Carbajal</p>
           </div>
           
           <div>
-            <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide">Y Nuestros Padrinos:</h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Mario Rodríguez Sandoval</p>
-            <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">María Stephane Oviedo Silva</p>
+            <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide text-center" style={{ color: colors.contrast }}>Y Nuestros Padrinos:</h3>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Mario Rodríguez Sandoval</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>María Stephane Oviedo Silva</p>
           </div>
         </div>
       </section>
 
       {/* Photo Gallery */}
-      <section className="bg-white">
+      <section style={{ backgroundColor: colors.background }}>
         <div className="grid grid-cols-3 gap-px">
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/images/IMG_3289.jpg"
+              src="/api/placeholder/400/400"
               alt="Couple photo"
               fill
               quality={100}
@@ -228,7 +375,7 @@ const WeddingApp: React.FC = () => {
           </div>
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/images/IMG_3304.jpg"
+              src="/api/placeholder/400/400"
               alt="Bouquet"
               fill
               quality={100}
@@ -240,7 +387,7 @@ const WeddingApp: React.FC = () => {
           </div>
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/images/IMG_3314.jpg"
+              src="/api/placeholder/400/400"
               alt="Couple walking"
               fill
               quality={100}
@@ -254,10 +401,10 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Drinking Toast Photo */}
-      <section className="bg-white">
+      <section style={{ backgroundColor: colors.background }}>
         <div className="relative w-full" style={{ height: "500px" }}>
           <Image
-            src="/images/IMG_3336.jpg"
+            src="/api/placeholder/1200/500"
             alt="Couple toasting"
             fill
             quality={100}
@@ -270,48 +417,54 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Location Section */}
-      <section className="py-12 sm:py-16 px-4 bg-white">
+      <section className="py-12 sm:py-16 px-4" style={{ backgroundColor: colors.background }}>
         <div className="max-w-md sm:max-w-2xl md:max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-16">
             <div className="text-center md:w-5/12">
-              <h3 className="text-xl sm:text-2xl italic text-stone-500 mb-4 font-light">Ceremonia</h3>
-              <p className="text-sm sm:text-base font-medium mb-2">SAN PABLO LAS FUENTES</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Calle San Antonio 105</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Las Fuentes</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-1">Zapopan, Jalisco</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-4">06:00 p.m.</p>
+              <h3 className="text-xl sm:text-2xl italic mb-4 font-light" style={{ color: colors.primary }}>Ceremonia</h3>
+              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>SAN PABLO LAS FUENTES</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Calle San Antonio 105</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Las Fuentes</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Zapopan, Jalisco</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>06:00 p.m.</p>
               <a 
                 href="https://maps.app.goo.gl/MxYkNpTJQKgQZk4o6" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-1.5 bg-stone-100 border border-stone-200 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
+                className="inline-block px-4 py-1.5 border rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
+                style={{ 
+                  backgroundColor: colors.primary, 
+                  borderColor: colors.primary,
+                  color: 'white'
+                }}
               >
                 CÓMO LLEGAR
               </a>
             </div>
             
             <div className="hidden md:flex justify-center items-center md:w-2/12">
-              <Image
-                src="/images/geometric-divider.png"
-                alt="Geometric divider"
-                width={60}
-                height={60}
-                quality={100}
-              />
+              <div className="w-16 h-16 rounded-full flex items-center justify-center" style={{ backgroundColor: colors.secondary }}>
+                <div className="w-10 h-10" style={{ backgroundColor: colors.primary, opacity: 0.2 }}></div>
+              </div>
             </div>
             
             <div className="text-center md:w-5/12">
-              <h3 className="text-xl sm:text-2xl italic text-stone-500 mb-4 font-light">Recepción</h3>
-              <p className="text-sm sm:text-base font-medium mb-2">VERDE MADERA EVENTOS</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Av. Adolfo López Mateos Sur 8040</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600">Las Fuentes, 45070</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-1">Zapopan, Jal.</p>
-              <p className="text-[10px] sm:text-xs md:text-sm text-stone-600 mb-4">08:00 p.m.</p>
+              <h3 className="text-xl sm:text-2xl italic mb-4 font-light" style={{ color: colors.primary }}>Recepción</h3>
+              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>VERDE MADERA EVENTOS</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 8040</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Las Fuentes, 45070</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Zapopan, Jal.</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>08:00 p.m.</p>
               <a 
                 href="https://maps.app.goo.gl/vWHBCGS3wEgqB3JV7" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="inline-block px-4 py-1.5 bg-stone-100 border border-stone-200 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
+                className="inline-block px-4 py-1.5 border rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
+                style={{ 
+                  backgroundColor: colors.primary, 
+                  borderColor: colors.primary,
+                  color: 'white'
+                }}
               >
                 CÓMO LLEGAR
               </a>
@@ -321,122 +474,122 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Timeline Section */}
-      <section className="py-12 sm:py-16 px-4 bg-stone-100">
-        <h2 className="text-2xl sm:text-3xl italic text-center text-stone-500 mb-12 sm:mb-14 font-light">Minuto a Minuto</h2>
+      <section className="py-12 sm:py-16 px-4" style={{ backgroundColor: colors.secondary }}>
+        <h2 className="text-2xl sm:text-3xl italic text-center mb-12 sm:mb-14 font-light" style={{ color: colors.primary }}>Minuto a Minuto</h2>
         <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               06:00 p.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/church-icon.png" alt="Church" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🏛️
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Ceremonia Religiosa</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Ceremonia Religiosa</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               08:00 p.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/cocktail-icon.png" alt="Cocktail" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🥂
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Coctel de Bienvenida</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Coctel de Bienvenida</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               08:30 p.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/music-icon.png" alt="Music" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🎵
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Evento Social</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Evento Social</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               09:00 p.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/dinner-icon.png" alt="Dinner" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🍽️
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Cena a 3 tiempos</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Cena a 3 tiempos</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               10:00 p.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/heart-icon.png" alt="Heart" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              ❤️
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Primer Baile</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Primer Baile</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               10:30 p.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/dance-icon.png" alt="Dance" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              💃
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Se abre pista</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Se abre pista</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               11:30 p.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/party-icon.png" alt="Party" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🥃
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Ronda de shots</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Ronda de shots</div>
           </div>
         </div>
       </section>
 
       {/* Additional Timeline Items */}
-      <section className="py-8 sm:py-10 px-4 bg-stone-100">
+      <section className="py-8 sm:py-10 px-4" style={{ backgroundColor: colors.secondary }}>
         <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               12:00 a.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/light-icon.png" alt="Light" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              ✨
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Luces & Fuegos</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Luces & Fuegos</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               02:00 a.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/food-icon.png" alt="Food" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🌮
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Cena de madrugada</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Cena de madrugada</div>
           </div>
           
           <div className="flex items-center">
-            <div className="text-stone-500 text-xs sm:text-sm md:text-base w-24 text-right font-medium">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               03:00 a.m.
             </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center">
-              <Image src="/images/end-icon.png" alt="End" width={24} height={24} quality={100} />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              👋
             </div>
-            <div className="text-sm sm:text-base md:text-lg text-stone-700 font-medium">Fin del Evento</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Fin del Evento</div>
           </div>
         </div>
       </section>
 
       {/* Video Section */}
-      <section className="bg-white">
+      <section style={{ backgroundColor: colors.background }}>
         <div className="relative w-full h-40 sm:h-56 md:h-64 lg:h-80 overflow-hidden">
           <div className="absolute inset-0 flex justify-center items-center">
             <Image
-              src="/images/IMG_3349.jpg"
+              src="/api/placeholder/1200/800"
               alt="Cathedral view"
               fill
               quality={100}
@@ -460,68 +613,55 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Dress Code Section */}
-      <section className="py-8 sm:py-10 px-4 bg-stone-100 text-center">
-        <h2 className="text-lg sm:text-xl italic text-stone-500 mb-3 sm:mb-4 font-light">Dress Code</h2>
-        <p className="text-sm sm:text-base tracking-[0.25em] sm:tracking-[0.3em] text-stone-600">RIGUROSO FORMAL</p>
+      <section className="py-8 sm:py-10 px-4 text-center" style={{ backgroundColor: colors.secondary }}>
+        <h2 className="text-lg sm:text-xl italic mb-3 sm:mb-4 font-light" style={{ color: colors.primary }}>Dress Code</h2>
+        <p className="text-sm sm:text-base tracking-[0.25em] sm:tracking-[0.3em]" style={{ color: colors.contrast }}>RIGUROSO FORMAL</p>
       </section>
 
       {/* Registry Section */}
-      <section className="py-12 sm:py-16 px-4 bg-white">
-        <h2 className="text-lg sm:text-xl italic text-center text-stone-500 mb-3 sm:mb-4 font-light">Regalos</h2>
-        <p className="text-center text-stone-600 text-[10px] sm:text-xs mb-8 sm:mb-12">
+      <section className="py-12 sm:py-16 px-4" style={{ backgroundColor: colors.background }}>
+        <h2 className="text-lg sm:text-xl italic text-center mb-3 sm:mb-4 font-light" style={{ color: colors.primary }}>Regalos</h2>
+        <p className="text-center text-[10px] sm:text-xs mb-8 sm:mb-12" style={{ color: colors.contrast }}>
           ¡El regalo es opcional, lo más importante para nosotros, es tu compañía!
         </p>
         
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
           <div className="text-center">
-            <Image
-              src="/images/liverpool-logo.png"
-              alt="Liverpool"
-              width={100}
-              height={35}
-              className="mx-auto mb-3 sm:mb-4"
-              quality={100}
-            />
-            <p className="text-[10px] sm:text-xs text-stone-600 mb-2 sm:mb-3">Evento: 02960421</p>
+            <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
+              <div className="font-bold text-lg" style={{ color: colors.primary }}>Liverpool</div>
+            </div>
+            <p className="text-[10px] sm:text-xs mb-2 sm:mb-3" style={{ color: colors.contrast }}>Evento: 02960421</p>
             <a 
               href="https://www.liverpool.com.mx/tienda/home" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block px-2 sm:px-3 py-1 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ backgroundColor: colors.primary, color: 'white' }}
             >
               IR AL SITIO
             </a>
           </div>
           
           <div className="text-center">
-            <Image
-              src="/images/bbva-logo.png"
-              alt="BBVA"
-              width={100}
-              height={35}
-              className="mx-auto mb-3 sm:mb-4"
-              quality={100}
-            />
-            <p className="text-[10px] sm:text-xs text-stone-600">Sofía Sandoval Rodríguez</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Cuenta: 47986421</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Clabe: 012320005339129</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Tarjeta: 5370 0990 4412 3123</p>
+            <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
+              <div className="font-bold text-lg" style={{ color: colors.primary }}>BBVA</div>
+            </div>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Sofía Sandoval Rodríguez</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Cuenta: 47986421</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Clabe: 012320005339129</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Tarjeta: 5370 0990 4412 3123</p>
           </div>
           
           <div className="text-center">
-            <Image
-              src="/images/amazon-logo.png"
-              alt="Amazon"
-              width={100}
-              height={35}
-              className="mx-auto mb-3 sm:mb-4"
-              quality={100}
-            />
+            <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
+              <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
+            </div>
             <a 
               href="https://www.amazon.com.mx/" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block px-2 sm:px-3 py-1 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ backgroundColor: colors.primary, color: 'white' }}
             >
               IR AL SITIO
             </a>
@@ -530,46 +670,34 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Gift Envelope Section */}
-      <section className="py-6 sm:py-8 px-4 bg-white text-center">
+      <section className="py-6 sm:py-8 px-4 text-center" style={{ backgroundColor: colors.background }}>
         <div className="flex flex-col items-center justify-center mb-2 sm:mb-3">
-          <Image
-            src="/images/envelope-icon.png" 
-            alt="Envelope"
-            width={30}
-            height={30}
-            quality={100}
-          />
+          <div className="text-2xl" style={{ color: colors.accent }}>✉️</div>
         </div>
-        <h3 className="text-xs sm:text-sm uppercase tracking-wide text-stone-600 mb-2">LLUVIA DE SOBRES</h3>
-        <p className="text-[10px] sm:text-xs text-stone-500 max-w-xs sm:max-w-md mx-auto">
+        <h3 className="text-xs sm:text-sm uppercase tracking-wide mb-2" style={{ color: colors.contrast }}>LLUVIA DE SOBRES</h3>
+        <p className="text-[10px] sm:text-xs max-w-xs sm:max-w-md mx-auto" style={{ color: colors.contrast }}>
           Es la tradición de regalar dinero en efectivo a los novios dentro de un sobre el día del evento.
         </p>
       </section>
 
       {/* No Kids Section */}
-      <section className="py-8 sm:py-12 px-4 bg-stone-100 text-center">
-        <h2 className="text-lg sm:text-xl italic text-stone-500 mb-4 sm:mb-6 font-light">¡Te agradecemos!</h2>
-        <p className="max-w-xs sm:max-w-md mx-auto text-stone-600 text-[10px] sm:text-xs mb-4 sm:mb-6">
+      <section className="py-8 sm:py-12 px-4 text-center" style={{ backgroundColor: colors.secondary }}>
+        <h2 className="text-lg sm:text-xl italic mb-4 sm:mb-6 font-light" style={{ color: colors.primary }}>¡Te agradecemos!</h2>
+        <p className="max-w-xs sm:max-w-md mx-auto text-[10px] sm:text-xs mb-4 sm:mb-6" style={{ color: colors.contrast }}>
           Adoramos a sus pequeños, pero creemos que necesitan una noche libre.
           <br />
           Solo adultos por favor.
         </p>
         <div className="flex justify-center">
-          <Image
-            src="/images/no-kids-icons.png" 
-            alt="No Kids"
-            width={50}
-            height={25}
-            quality={100}
-          />
+          <div className="text-2xl" style={{ color: colors.accent }}>👨‍👩‍</div>
         </div>
       </section>
 
       {/* Newspaper Section */}
-      <section className="py-8 sm:py-10 bg-white">
+      <section className="py-8 sm:py-10" style={{ backgroundColor: colors.background }}>
         <div className="relative w-full mx-auto max-w-2xl" style={{ height: "350px" }}>
           <Image
-            src="/images/IMG_3360.jpg" 
+            src="/api/placeholder/800/350" 
             alt="Wedding Newspaper"
             fill
             quality={100}
@@ -582,31 +710,29 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-10 sm:py-12 px-4 bg-white text-center">
-        <h2 className="text-base sm:text-lg uppercase tracking-wide text-stone-500 mb-4 sm:mb-6">
+      <section className="py-10 sm:py-12 px-4 text-center" style={{ backgroundColor: colors.background }}>
+        <h2 className="text-base sm:text-lg uppercase tracking-wide mb-4 sm:mb-6" style={{ color: colors.primary }}>
           CONTACTA A
           <br />
           ALEXA & MARCO
         </h2>
-        <p className="mb-4 sm:mb-6 text-stone-600 text-[10px] sm:text-xs">
+        <p className="mb-4 sm:mb-6 text-[10px] sm:text-xs" style={{ color: colors.contrast }}>
           Envía un mensaje por Whatsapp escaneando el código o en el botón 'Enviar Mensaje'
         </p>
         <div className="max-w-xs mx-auto">
-          <Image
-            src="/images/qr-code.png"
-            alt="QR Code"
-            width={120}
-            height={120}
-            className="mx-auto mb-6 sm:mb-8"
-            quality={100}
-            unoptimized
-          />
+          <div 
+            className="w-32 h-32 mx-auto mb-6 sm:mb-8 border-2 flex items-center justify-center" 
+            style={{ borderColor: colors.primary, backgroundColor: colors.secondary }}
+          >
+            <span style={{ color: colors.primary }}>QR Code</span>
+          </div>
           <div className="space-y-3">
             <a 
               href="https://wa.me/523334567890?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="block w-full px-3 sm:px-4 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="block w-full px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ backgroundColor: colors.primary, color: 'white' }}
             >
               CONFIRMAR ASISTENCIA
             </a>
@@ -614,7 +740,8 @@ const WeddingApp: React.FC = () => {
               href="https://wa.me/523334567890" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="block w-full px-3 sm:px-4 py-1.5 bg-stone-100 hover:bg-stone-200 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="block w-full px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ backgroundColor: colors.accent, color: 'white' }}
             >
               ENVIAR MENSAJE
             </a>
@@ -623,37 +750,47 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Hotel Options */}
-      <section className="py-10 sm:py-12 px-4 bg-stone-100">
-        <h2 className="text-lg sm:text-xl italic text-center text-stone-500 mb-8 sm:mb-10 font-light">Hospedaje</h2>
+      <section className="py-10 sm:py-12 px-4" style={{ backgroundColor: colors.secondary }}>
+        <h2 className="text-lg sm:text-xl italic text-center mb-8 sm:mb-10 font-light" style={{ color: colors.primary }}>Hospedaje</h2>
         
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3">CITY EXPRESS PLUS</h3>
-            <p className="text-[10px] sm:text-xs text-stone-600">Av. Adolfo López Mateos Sur 1450</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Colonia las Villas</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Palomar, Jal.</p>
-            <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 8000 0770</p>
+            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>CITY EXPRESS PLUS</h3>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 1450</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Colonia las Villas</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Palomar, Jal.</p>
+            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 8000 0770</p>
             <a 
               href="https://maps.app.goo.gl/Fwi59pjqWAPPjHxz8" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ 
+                backgroundColor: colors.background, 
+                borderColor: colors.primary,
+                color: colors.contrast 
+              }}
             >
               CÓMO LLEGAR
             </a>
           </div>
           
           <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3">HOLIDAY INN EXPRESS</h3>
-            <p className="text-[10px] sm:text-xs text-stone-600">Av. Camino al tesoro 8650</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Paisajes del Tesoro</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Guadalajara, Jal.</p>
-            <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 3864 1234</p>
+            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>HOLIDAY INN EXPRESS</h3>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Camino al tesoro 8650</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Paisajes del Tesoro</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Guadalajara, Jal.</p>
+            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 3864 1234</p>
             <a 
               href="https://maps.app.goo.gl/RHsfBVUWdvAMYyFu7" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ 
+                backgroundColor: colors.background, 
+                borderColor: colors.primary,
+                color: colors.contrast 
+              }}
             >
               CÓMO LLEGAR
             </a>
@@ -662,35 +799,45 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Additional Hotel Options */}
-      <section className="py-10 sm:py-12 px-4 bg-stone-100">
+      <section className="py-10 sm:py-12 px-4" style={{ backgroundColor: colors.secondary }}>
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3">RAMADA ENCORE GUADALAJARA</h3>
-            <p className="text-[10px] sm:text-xs text-stone-600">Av. Adolfo López Mateos Sur 6730</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">La Guadalupana</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Palomar, Jal.</p>
-            <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 8964 8000</p>
+            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>RAMADA ENCORE GUADALAJARA</h3>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 6730</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>La Guadalupana</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Palomar, Jal.</p>
+            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 8964 8000</p>
             <a 
               href="https://maps.app.goo.gl/ukqVYHn1mpTPnz6t9" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ 
+                backgroundColor: colors.background, 
+                borderColor: colors.primary,
+                color: colors.contrast 
+              }}
             >
               CÓMO LLEGAR
             </a>
           </div>
           
           <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3">MICROTEL INN & SUITES</h3>
-            <p className="text-[10px] sm:text-xs text-stone-600">Av. Adolfo López Mateos Sur 1701, P3</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">La Guadalupana</p>
-            <p className="text-[10px] sm:text-xs text-stone-600">Guadalajara, Jal.</p>
-            <p className="text-[10px] sm:text-xs text-stone-600 mb-3 sm:mb-4">Contacto: 33 4077 0303</p>
+            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>MICROTEL INN & SUITES</h3>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 1701, P3</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>La Guadalupana</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Guadalajara, Jal.</p>
+            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 4077 0303</p>
             <a 
               href="https://maps.app.goo.gl/jvmdAkuAU3kR8tPT9" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-block px-3 sm:px-4 py-1.5 bg-white border border-stone-200 hover:bg-stone-50 rounded-full text-[10px] sm:text-xs transition-colors"
+              className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
+              style={{ 
+                backgroundColor: colors.background, 
+                borderColor: colors.primary,
+                color: colors.contrast 
+              }}
             >
               CÓMO LLEGAR
             </a>
@@ -699,29 +846,24 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Social Media Hashtag */}
-      <section className="py-10 sm:py-12 px-4 bg-white text-center">
+      <section className="py-10 sm:py-12 px-4 text-center" style={{ backgroundColor: colors.background }}>
         <div className="flex items-center justify-center space-x-3">
-          <div className="text-stone-300">
-            <Image
-              src="/images/instagram-icon.png"
-              alt="Instagram"
-              width={28}
-              height={28}
-              quality={100}
-            />
+          <div style={{ color: colors.accent }}>
+            📷
           </div>
           <div>
-            <p className="text-[10px] sm:text-xs text-stone-400">Nuestro Hashtag Oficial</p>
-            <p className="text-base sm:text-lg text-stone-500 font-light">#AlexayMarco</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.accent }}>Nuestro Hashtag Oficial</p>
+            <p className="text-base sm:text-lg font-light" style={{ color: colors.primary }}>#AlexayMarco</p>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 sm:py-10 px-4 text-center text-stone-400 text-[10px] sm:text-xs bg-gray-50">
+      <footer className="py-8 sm:py-10 px-4 text-center text-[10px] sm:text-xs" style={{ backgroundColor: colors.background, color: colors.contrast }}>
         <button 
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="mb-4 sm:mb-6 hover:text-stone-500 transition-colors"
+          className="mb-4 sm:mb-6 transition-colors"
+          style={{ color: colors.primary }}
         >
           <div className="flex flex-col items-center">
             <div className="transform rotate-180 text-base sm:text-lg">▼</div>
@@ -730,8 +872,20 @@ const WeddingApp: React.FC = () => {
         </button>
         <p>© 2025 by My Wed Day. | www.mywedday.mx</p>
       </footer>
+
+      {/* Color Panel */}
+      <ColorPanel />
     </div>
   );
 };
 
-export default WeddingApp;
+// Componente principal
+const App: React.FC = () => {
+  return (
+    <ColorThemeProvider>
+      <WeddingApp />
+    </ColorThemeProvider>
+  );
+};
+
+export default App;
