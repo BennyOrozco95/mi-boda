@@ -94,7 +94,7 @@ const WeddingApp: React.FC = () => {
             priority
             quality={100}
             className="object-cover"
-            objectPosition="85% center"
+            objectPosition="center center"
             sizes="100vw"
             unoptimized
           />
