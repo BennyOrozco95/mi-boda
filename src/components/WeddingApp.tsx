@@ -408,51 +408,51 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Date Display in Elegant Typography */}
-<section className="py-12 sm:py-16 text-center relative overflow-hidden" style={{ backgroundColor: colors.background }}>
-  {/* Elemento decorativo (línea vertical) */}
+<section className="py-8 sm:py-10 md:py-12 text-center relative overflow-hidden" style={{ backgroundColor: colors.background }}>
+  {/* Elemento decorativo (línea vertical) - ajustado para móviles */}
   <div 
-    className="absolute h-24 md:h-32 w-px left-1/2 transform -translate-x-1/2" 
+    className="absolute h-16 sm:h-20 md:h-24 w-px left-1/2 transform -translate-x-1/2" 
     style={{ backgroundColor: colors.primary, opacity: 0.3 }}
   ></div>
   
-  <div className="container mx-auto px-4">
-    <div className="relative max-w-xl mx-auto">
-      {/* Etiqueta de evento */}
-      <div className="mb-4 md:mb-6">
+  <div className="container mx-auto px-3 sm:px-4">
+    <div className="relative max-w-sm sm:max-w-md md:max-w-lg mx-auto">
+      {/* Etiqueta de evento - ajustada para móviles */}
+      <div className="mb-2 sm:mb-3 md:mb-4">
         <span 
-          className="inline-block px-4 py-1 text-xs md:text-sm font-serif tracking-widest uppercase"
+          className="inline-block px-3 py-0.5 sm:px-4 sm:py-1 text-xs tracking-widest uppercase"
           style={{ color: colors.primary }}
         >
           Evento Principal
         </span>
       </div>
       
-      {/* Contenedor principal de la fecha */}
-      <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-8">
-        {/* Día */}
-        <div className="relative">
+      {/* Contenedor principal de la fecha - optimizado para móviles */}
+      <div className="flex flex-col sm:flex-row items-center justify-center space-y-1 sm:space-y-0 sm:space-x-4 md:space-x-6">
+        {/* Día - tamaño ajustado para móviles */}
+        <div className="relative mb-1 sm:mb-0">
           <span 
-            className="block text-7xl sm:text-8xl md:text-9xl font-light leading-none"
+            className="block text-6xl sm:text-7xl md:text-8xl font-light leading-none"
             style={{ color: colors.primary }}
           >
             17
           </span>
           <div 
-            className="absolute -bottom-2 left-0 w-full h-0.5"
+            className="absolute -bottom-1 left-0 w-full h-0.5"
             style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}
           ></div>
         </div>
         
-        {/* Mes y Año */}
+        {/* Mes y Año - tamaños optimizados para móviles */}
         <div className="text-center">
           <span 
-            className="block text-4xl md:text-5xl font-light tracking-wide uppercase"
+            className="block text-3xl sm:text-4xl md:text-5xl font-light tracking-wide uppercase"
             style={{ color: colors.primary }}
           >
             Mayo
           </span>
           <span 
-            className="block text-4xl md:text-5xl font-light"
+            className="block text-2xl sm:text-3xl md:text-4xl font-light mt-0.5"
             style={{ color: colors.primary }}
           >
             2025
@@ -460,11 +460,13 @@ const WeddingApp: React.FC = () => {
         </div>
       </div>
       
-      {/* Elementos decorativos (sutiles círculos) */}
-      <div className="absolute -z-10 w-64 h-64 rounded-full opacity-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" 
+      {/* Elementos decorativos ajustados para ser más responsivos */}
+      <div className="absolute -z-10 w-full h-full max-w-xs max-h-xs rounded-full opacity-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" 
            style={{ backgroundColor: colors.primary }}></div>
-      <div className="absolute -z-10 w-24 h-24 rounded-full opacity-5 -top-6 -right-6" 
-           style={{ backgroundColor: colors.accent }}></div>
+           
+      {/* Elementos adicionales para mejorar la apariencia en móviles */}
+      <div className="mt-3 sm:mt-4 md:mt-6 mx-auto w-16 sm:w-24 md:w-32 h-px" 
+           style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}></div>
     </div>
   </div>
 </section>
