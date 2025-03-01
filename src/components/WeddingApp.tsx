@@ -141,18 +141,18 @@ const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label 
 
   return (
     <div 
-      className="relative overflow-hidden rounded-md"
+      className="relative overflow-hidden rounded-md w-full"
       style={{ 
         backgroundColor: `${colors.contrast}15`,
         boxShadow: `0 4px 6px ${colors.contrast}10, 0 1px 3px ${colors.contrast}08`,
         backdropFilter: "blur(4px)"
       }}
     >
-      <div className="px-2 py-3 sm:py-5 md:py-6 flex flex-col items-center justify-center">
-        <div className="relative h-12 sm:h-14 md:h-16 lg:h-20 overflow-hidden w-full flex justify-center">
+      <div className="px-1 sm:px-2 py-2 sm:py-3 md:py-4 flex flex-col items-center justify-center">
+        <div className="relative h-10 sm:h-12 md:h-14 lg:h-16 overflow-hidden w-full flex justify-center">
           {/* Número actual */}
           <div 
-            className={`absolute w-full text-center text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light transition-transform duration-500 ${isFlipping ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}
+            className={`absolute w-full text-center text-base sm:text-lg md:text-2xl lg:text-3xl font-light transition-transform duration-500 ${isFlipping ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}
             style={{ color: 'white' }}
           >
             {prevValue}
@@ -160,7 +160,7 @@ const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label 
           
           {/* Nuevo número */}
           <div 
-            className={`absolute w-full text-center text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light transition-transform duration-500 ${isFlipping ? 'transform translate-y-0 opacity-100' : 'transform translate-y-full opacity-0'}`}
+            className={`absolute w-full text-center text-base sm:text-lg md:text-2xl lg:text-3xl font-light transition-transform duration-500 ${isFlipping ? 'transform translate-y-0 opacity-100' : 'transform translate-y-full opacity-0'}`}
             style={{ color: 'white' }}
           >
             {value}
@@ -168,7 +168,7 @@ const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label 
         </div>
         
         <div 
-          className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-2 font-medium"
+          className="text-[8px] sm:text-xs tracking-wide sm:tracking-wider mt-1 font-medium truncate w-full"
           style={{ color: 'white' }}
         >
           {label}
@@ -306,7 +306,7 @@ const WeddingApp: React.FC = () => {
               background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` 
             }}></div>
             
-            <div className="grid grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-[320px] sm:max-w-md md:max-w-lg lg:max-w-xl w-full text-center"
+            <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-4 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto text-center"
                  style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}>
               <AnimatedDigit value={timeLeft.days} label="DÍAS" />
               <AnimatedDigit value={timeLeft.hours} label="HORAS" />
@@ -918,7 +918,7 @@ const WeddingApp: React.FC = () => {
             <p className="uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[8px] sm:text-xs mt-1">BACK TO TOP</p>
           </div>
         </button>
-        <p>.</p>
+        <p>© 2025 by My Wed Day. | www.mywedday.mx</p>
       </footer>
     </div>
   );
