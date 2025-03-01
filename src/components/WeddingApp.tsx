@@ -55,6 +55,27 @@ const GlobalStyles: React.FC = () => {
         0% { background-position: -100% 0; }
         100% { background-position: 200% 0; }
       }
+      
+      @keyframes glow {
+        0% { box-shadow: 0 0 5px rgba(255,255,255,0.5); }
+        50% { box-shadow: 0 0 20px rgba(255,255,255,0.8); }
+        100% { box-shadow: 0 0 5px rgba(255,255,255,0.5); }
+      }
+      
+      @keyframes countUp {
+        from { transform: translateY(100%); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      
+      @keyframes countDown {
+        from { transform: translateY(0); opacity: 1; }
+        to { transform: translateY(-100%); opacity: 0; }
+      }
+      
+      @keyframes fadeInUp {
+        from { transform: translateY(10px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
     `}</style>
   );
 };
@@ -123,65 +144,75 @@ const useColorTheme = (): ColorThemeContextType => {
 };
 
 // Componente de dígito animado para el contador
-const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label }) => {
+// Componente del reloj elegante para el contador
+const ClockDigit: React.FC<{value: number, label: string}> = ({ value, label }) => {
   const [prevValue, setPrevValue] = useState(value);
-  const [isFlipping, setIsFlipping] = useState(false);
   const { colors } = useColorTheme();
   
   useEffect(() => {
     if (prevValue !== value) {
-      setIsFlipping(true);
-      const timer = setTimeout(() => {
-        setPrevValue(value);
-        setIsFlipping(false);
-      }, 500); // Duración de la animación
-      return () => clearTimeout(timer);
+      setPrevValue(value);
     }
   }, [value, prevValue]);
 
+  // Asegurar que el valor tenga dos dígitos
+  const formattedValue = value < 10 ? `0${value}` : `${value}`;
+  const formattedPrevValue = prevValue < 10 ? `0${prevValue}` : `${prevValue}`;
+  
+  // Separar los dígitos para animarlos individualmente
+  const digits = formattedValue.split('');
+  const prevDigits = formattedPrevValue.split('');
+  
   return (
-    <div 
-      className="relative overflow-hidden rounded-md h-full"
-      style={{ 
-        backgroundColor: `${colors.contrast}15`,
-        boxShadow: `0 4px 6px ${colors.contrast}10, 0 1px 3px ${colors.contrast}08`,
-        backdropFilter: "blur(4px)"
-      }}
-    >
-      <div className="py-2 flex flex-col items-center justify-center h-full">
-        <div className="relative h-10 overflow-hidden flex justify-center w-full">
-          {/* Número actual */}
-          <div 
-            className={`absolute w-full text-center text-sm sm:text-base md:text-xl lg:text-2xl font-light transition-transform duration-500 ${isFlipping ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}
-            style={{ color: 'white' }}
-          >
-            {prevValue}
-          </div>
-          
-          {/* Nuevo número */}
-          <div 
-            className={`absolute w-full text-center text-sm sm:text-base md:text-xl lg:text-2xl font-light transition-transform duration-500 ${isFlipping ? 'transform translate-y-0 opacity-100' : 'transform translate-y-full opacity-0'}`}
-            style={{ color: 'white' }}
-          >
-            {value}
-          </div>
-        </div>
-        
-        <div 
-          className="text-[7px] sm:text-[8px] text-center font-medium w-full"
-          style={{ color: 'white' }}
-        >
-          {label}
-        </div>
-      </div>
-      
-      {/* Línea decorativa */}
+    <div className="flex flex-col items-center">
       <div 
-        className="absolute left-0 top-0 h-full w-1"
-        style={{ background: `linear-gradient(to bottom, ${colors.primary}, transparent)` }}
-      ></div>
+        className="flex overflow-hidden rounded-lg" 
+        style={{ 
+          background: `linear-gradient(145deg, ${colors.contrast}40, ${colors.contrast}20)`,
+          boxShadow: `0 4px 8px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.1)`,
+        }}
+      >
+        {digits.map((digit, i) => (
+          <div key={i} className="relative w-6 sm:w-9 md:w-12 lg:w-16 overflow-hidden">
+            <div 
+              className="w-full h-12 sm:h-16 md:h-20 lg:h-24 flex items-center justify-center"
+              style={{ 
+                background: digit !== prevDigits[i] 
+                  ? `linear-gradient(to bottom, ${colors.primary}20, transparent)` 
+                  : 'transparent',
+                transition: 'background 1s ease-out'
+              }}
+            >
+              <div 
+                className={`text-lg sm:text-2xl md:text-4xl lg:text-5xl font-thin transition-all duration-700 ease-in-out ${
+                  digit !== prevDigits[i] ? 'transform -translate-y-1 scale-110' : ''
+                }`}
+                style={{ 
+                  color: 'white',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                }}
+              >
+                {digit}
+              </div>
+            </div>
+            {/* Línea decorativa del dígito */}
+            <div 
+              className="absolute bottom-0 left-0 w-full h-px"
+              style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}
+            ></div>
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-2 text-xs sm:text-sm uppercase tracking-widest" style={{ 
+        color: 'rgba(255,255,255,0.75)',
+        textShadow: '0 1px 2px rgba(0,0,0,0.5)'
+      }}>
+        {label}
+      </div>
     </div>
   );
+};
 };
 
 // Componente principal de la aplicación
@@ -297,20 +328,24 @@ const WeddingApp: React.FC = () => {
               background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` 
             }}></div>
             
-            {/* Contador elegante y animado - versión con 4 columnas garantizadas */}
-            <div className="flex flex-row justify-between gap-1 w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-              <div className="w-1/4">
-                <AnimatedDigit value={timeLeft.days} label="DÍAS" />
+            {/* Contador elegante y animado - diseño mejorado */}
+            <div className="relative">
+              {/* Decoración en forma de línea elegante */}
+              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 w-20 h-px" style={{ 
+                background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` 
+              }}></div>
+              
+              <div className="flex flex-row justify-center gap-3 sm:gap-4 md:gap-6 w-full max-w-lg mx-auto">
+                <ClockDigit value={timeLeft.days} label="DÍAS" />
+                <ClockDigit value={timeLeft.hours} label="HORAS" />
+                <ClockDigit value={timeLeft.minutes} label="MIN" />
+                <ClockDigit value={timeLeft.seconds} label="SEG" />
               </div>
-              <div className="w-1/4">
-                <AnimatedDigit value={timeLeft.hours} label="HORAS" />
-              </div>
-              <div className="w-1/4">
-                <AnimatedDigit value={timeLeft.minutes} label="MIN" />
-              </div>
-              <div className="w-1/4">
-                <AnimatedDigit value={timeLeft.seconds} label="SEG" />
-              </div>
+              
+              {/* Decoración en forma de línea elegante */}
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-20 h-px" style={{ 
+                background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` 
+              }}></div>
             </div>
             
             {/* Decoración en forma de línea elegante */}
