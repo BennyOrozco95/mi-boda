@@ -409,25 +409,25 @@ const WeddingApp: React.FC = () => {
 
       {/* Date Display in Elegant Typography */}
 <section className="py-12 sm:py-16 text-center" style={{ backgroundColor: colors.background }}>
-  <div className="relative max-w-xs sm:max-w-sm md:max-w-md mx-auto flex justify-center items-center">
+  <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto" style={{ height: "180px" }}>
     {/* Año en vertical */}
-    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
-      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
-           style={{ color: colors.contrast, opacity: 0.8 }}>2</div>
-      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
-           style={{ color: colors.contrast, opacity: 0.8 }}>0</div>
-      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
-           style={{ color: colors.contrast, opacity: 0.8 }}>2</div>
-      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
-           style={{ color: colors.contrast, opacity: 0.8 }}>5</div>
+    <div className="absolute left-4 sm:left-8 md:left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-start">
+      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
+           style={{ color: '#8a7e6d' }}>2</div>
+      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
+           style={{ color: '#8a7e6d' }}>0</div>
+      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
+           style={{ color: '#8a7e6d' }}>2</div>
+      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
+           style={{ color: '#8a7e6d' }}>5</div>
     </div>
-    
-    {/* Día y mes centrados */}
-    <div className="text-center">
-      <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-wide" 
-           style={{ color: colors.contrast, opacity: 0.8 }}>24</div>
-      <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-wide" 
-           style={{ color: colors.contrast, opacity: 0.8 }}>Mar</div>
+   
+    {/* Día y mes centrados pero ligeramente a la derecha */}
+    <div className="absolute right-1/2 sm:right-1/3 top-1/2 transform translate-x-1/2 -translate-y-1/2 text-right">
+      <div className="text-6xl sm:text-7xl md:text-8xl font-light tracking-normal"
+           style={{ color: '#8a7e6d', lineHeight: '0.9' }}>24</div>
+      <div className="text-6xl sm:text-7xl md:text-8xl font-light tracking-normal"
+           style={{ color: '#8a7e6d', lineHeight: '0.9' }}>Mar</div>
     </div>
   </div>
 </section>
@@ -589,7 +589,9 @@ const WeddingApp: React.FC = () => {
     </h2>
     
     <div className="my-4 text-2xl sm:text-3xl md:text-4xl font-light" style={{ color: colors.primary }}>
-      Sofia Isabella
+      Lua 
+      & 
+      Laya
     </div>
     
     <p className="text-xs sm:text-sm max-w-xs mx-auto mb-4" style={{ color: colors.contrast }}>
