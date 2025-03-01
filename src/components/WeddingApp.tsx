@@ -168,8 +168,8 @@ const ClockDigit: React.FC<{value: number, label: string}> = ({ value, label }) 
       <div 
         className="flex overflow-hidden rounded-lg" 
         style={{ 
-          background: `linear-gradient(145deg, ${colors.contrast}40, ${colors.contrast}20)`,
-          boxShadow: `0 4px 8px rgba(0,0,0,0.15), 0 1px 3px rgba(0,0,0,0.1), inset 0 1px 1px rgba(255,255,255,0.1)`,
+          background: `linear-gradient(145deg, ${colors.contrast}80, ${colors.contrast}60)`,
+          boxShadow: `0 4px 8px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.15)`,
         }}
       >
         {digits.map((digit, i) => (
@@ -178,18 +178,18 @@ const ClockDigit: React.FC<{value: number, label: string}> = ({ value, label }) 
               className="w-full h-12 sm:h-16 md:h-20 lg:h-24 flex items-center justify-center"
               style={{ 
                 background: digit !== prevDigits[i] 
-                  ? `linear-gradient(to bottom, ${colors.primary}20, transparent)` 
-                  : 'transparent',
+                  ? `linear-gradient(to bottom, ${colors.primary}40, ${colors.contrast}60)` 
+                  : `linear-gradient(to bottom, ${colors.contrast}70, ${colors.contrast}50)`,
                 transition: 'background 1s ease-out'
               }}
             >
               <div 
-                className={`text-lg sm:text-2xl md:text-4xl lg:text-5xl font-thin transition-all duration-700 ease-in-out ${
+                className={`text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light transition-all duration-700 ease-in-out ${
                   digit !== prevDigits[i] ? 'transform -translate-y-1 scale-110' : ''
                 }`}
                 style={{ 
                   color: 'white',
-                  textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+                  textShadow: '0 2px 4px rgba(0,0,0,0.5), 0 0 8px rgba(255,255,255,0.5)',
                 }}
               >
                 {digit}
@@ -197,16 +197,16 @@ const ClockDigit: React.FC<{value: number, label: string}> = ({ value, label }) 
             </div>
             {/* Línea decorativa del dígito */}
             <div 
-              className="absolute bottom-0 left-0 w-full h-px"
+              className="absolute bottom-0 left-0 w-full h-1"
               style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}
             ></div>
           </div>
         ))}
       </div>
 
-      <div className="mt-2 text-xs sm:text-sm uppercase tracking-widest" style={{ 
-        color: 'rgba(255,255,255,0.75)',
-        textShadow: '0 1px 2px rgba(0,0,0,0.5)'
+      <div className="mt-2 text-xs sm:text-sm uppercase tracking-widest font-medium" style={{ 
+        color: 'white',
+        textShadow: '0 1px 3px rgba(0,0,0,0.8), 0 0 5px rgba(0,0,0,0.5)'
       }}>
         {label}
       </div>
