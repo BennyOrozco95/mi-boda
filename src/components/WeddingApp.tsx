@@ -572,6 +572,42 @@ const WeddingApp: React.FC = () => {
         </div>
       </section>
 
+      {/* Baptism Special Section */}
+<section className="py-10 sm:py-12 px-4" style={{ 
+  background: `linear-gradient(to right, ${colors.background} 0%, ${colors.secondary}40 50%, ${colors.background} 100%)` 
+}}>
+  <div className="max-w-md sm:max-w-lg mx-auto text-center relative">
+    {/* Decorative elements */}
+    <div className="absolute top-0 left-0 w-12 h-12 sm:w-16 sm:h-16 opacity-10" style={{ color: colors.primary }}>✝️</div>
+    <div className="absolute top-0 right-0 w-12 h-12 sm:w-16 sm:h-16 opacity-10" style={{ color: colors.primary }}>✝️</div>
+    
+    {/* Decorative line */}
+    <div className="w-32 h-px mx-auto mb-6" style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}></div>
+    
+    <h2 className="text-lg sm:text-xl italic font-light mb-4" style={{ color: colors.primary }}>
+      También celebraremos el Bautizo de
+    </h2>
+    
+    <div className="my-4 text-2xl sm:text-3xl md:text-4xl font-light" style={{ color: colors.primary }}>
+      Sofia Isabella
+    </div>
+    
+    <p className="text-xs sm:text-sm max-w-xs mx-auto mb-4" style={{ color: colors.contrast }}>
+      Nos sentimos honrados de compartir este sacramento especial con ustedes durante nuestra celebración
+    </p>
+    
+    {/* Decorative small icons */}
+    <div className="flex justify-center gap-6 my-4">
+      <div style={{ color: colors.accent }}>🕊️</div>
+      <div style={{ color: colors.accent }}>💧</div>
+      <div style={{ color: colors.accent }}>✨</div>
+    </div>
+    
+    {/* Decorative line */}
+    <div className="w-32 h-px mx-auto mt-6" style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}></div>
+  </div>
+</section>
+
       {/* Timeline Section */}
       <section className="py-12 sm:py-16 px-4" style={{ backgroundColor: colors.secondary }}>
         <h2 className="text-2xl sm:text-3xl italic text-center mb-12 sm:mb-14 font-light" style={{ color: colors.primary }}>Minuto a Minuto</h2>
