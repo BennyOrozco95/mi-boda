@@ -423,7 +423,7 @@ const WeddingApp: React.FC = () => {
           className="inline-block px-3 py-0.5 sm:px-4 sm:py-1 text-xs tracking-widest uppercase"
           style={{ color: colors.primary }}
         >
-          Evento Principal
+
         </span>
       </div>
       
@@ -915,87 +915,6 @@ const WeddingApp: React.FC = () => {
             >
               CÓMO LLEGAR
             </a>
-          </div>
-          
-          <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>HOLIDAY INN EXPRESS</h3>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Camino al tesoro 8650</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Paisajes del Tesoro</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Guadalajara, Jal.</p>
-            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 3864 1234</p>
-            <a 
-              href="https://maps.app.goo.gl/RHsfBVUWdvAMYyFu7" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
-              style={{ 
-                backgroundColor: colors.background, 
-                borderColor: colors.primary,
-                color: colors.contrast 
-              }}
-            >
-              CÓMO LLEGAR
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Additional Hotel Options */}
-      <section className="py-10 sm:py-12 px-4" style={{ backgroundColor: colors.secondary }}>
-        <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-          <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>RAMADA ENCORE GUADALAJARA</h3>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 6730</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>La Guadalupana</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Palomar, Jal.</p>
-            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 8964 8000</p>
-            <a 
-              href="https://maps.app.goo.gl/ukqVYHn1mpTPnz6t9" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
-              style={{ 
-                backgroundColor: colors.background, 
-                borderColor: colors.primary,
-                color: colors.contrast 
-              }}
-            >
-              CÓMO LLEGAR
-            </a>
-          </div>
-          
-          <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>MICROTEL INN & SUITES</h3>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 1701, P3</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>La Guadalupana</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Guadalajara, Jal.</p>
-            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 4077 0303</p>
-            <a 
-              href="https://maps.app.goo.gl/jvmdAkuAU3kR8tPT9" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
-              style={{ 
-                backgroundColor: colors.background, 
-                borderColor: colors.primary,
-                color: colors.contrast 
-              }}
-            >
-              CÓMO LLEGAR
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Social Media Hashtag */}
-      <section className="py-10 sm:py-12 px-4 text-center" style={{ backgroundColor: colors.background }}>
-        <div className="flex items-center justify-center space-x-3">
-          <div style={{ color: colors.accent }}>
-            📷
-          </div>
-          <div>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.accent }}>Nuestro Hashtag Oficial</p>
-            <p className="text-base sm:text-lg font-light" style={{ color: colors.primary }}>#AlexayMarco</p>
           </div>
         </div>
       </section>
