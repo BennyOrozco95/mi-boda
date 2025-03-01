@@ -85,7 +85,7 @@ const WeddingApp: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen font-serif text-stone-700 bg-white">
       {/* Hero Section */}
-      <section className="relative w-full" style={{ height: "calc(100vh - 0px)" }}>
+      <section className="relative w-full" style={{ height: "calc(70vh - 0px)" }}>
         <div className="relative w-full h-full">
           <Image
             src="/images/IMG_3349.jpg"
