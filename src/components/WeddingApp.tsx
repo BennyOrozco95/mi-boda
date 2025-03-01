@@ -141,18 +141,18 @@ const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label 
 
   return (
     <div 
-      className="relative overflow-hidden rounded-md w-full"
+      className="relative overflow-hidden rounded-md h-full"
       style={{ 
         backgroundColor: `${colors.contrast}15`,
         boxShadow: `0 4px 6px ${colors.contrast}10, 0 1px 3px ${colors.contrast}08`,
         backdropFilter: "blur(4px)"
       }}
     >
-      <div className="px-1 sm:px-2 py-2 sm:py-3 md:py-4 flex flex-col items-center justify-center">
-        <div className="relative h-10 sm:h-12 md:h-14 lg:h-16 overflow-hidden w-full flex justify-center">
+      <div className="py-2 flex flex-col items-center justify-center h-full">
+        <div className="relative h-10 overflow-hidden flex justify-center w-full">
           {/* Número actual */}
           <div 
-            className={`absolute w-full text-center text-base sm:text-lg md:text-2xl lg:text-3xl font-light transition-transform duration-500 ${isFlipping ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}
+            className={`absolute w-full text-center text-sm sm:text-base md:text-xl lg:text-2xl font-light transition-transform duration-500 ${isFlipping ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}
             style={{ color: 'white' }}
           >
             {prevValue}
@@ -160,7 +160,7 @@ const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label 
           
           {/* Nuevo número */}
           <div 
-            className={`absolute w-full text-center text-base sm:text-lg md:text-2xl lg:text-3xl font-light transition-transform duration-500 ${isFlipping ? 'transform translate-y-0 opacity-100' : 'transform translate-y-full opacity-0'}`}
+            className={`absolute w-full text-center text-sm sm:text-base md:text-xl lg:text-2xl font-light transition-transform duration-500 ${isFlipping ? 'transform translate-y-0 opacity-100' : 'transform translate-y-full opacity-0'}`}
             style={{ color: 'white' }}
           >
             {value}
@@ -168,7 +168,7 @@ const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label 
         </div>
         
         <div 
-          className="text-[8px] sm:text-xs tracking-wide sm:tracking-wider mt-1 font-medium truncate w-full"
+          className="text-[7px] sm:text-[8px] text-center font-medium w-full"
           style={{ color: 'white' }}
         >
           {label}
@@ -179,15 +179,6 @@ const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label 
       <div 
         className="absolute left-0 top-0 h-full w-1"
         style={{ background: `linear-gradient(to bottom, ${colors.primary}, transparent)` }}
-      ></div>
-      
-      {/* Efecto de brillo */}
-      <div 
-        className={`absolute inset-0 opacity-0 ${isFlipping ? 'animate-pulse' : ''}`} 
-        style={{ 
-          background: `linear-gradient(135deg, ${colors.primary}20 0%, transparent 50%, ${colors.primary}20 100%)`,
-          animation: isFlipping ? 'pulse 1s ease-in-out' : 'none'
-        }}
       ></div>
     </div>
   );
@@ -306,12 +297,20 @@ const WeddingApp: React.FC = () => {
               background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` 
             }}></div>
             
-            <div className="grid grid-cols-4 gap-1 sm:gap-2 md:gap-4 w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl mx-auto text-center"
-                 style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}>
-              <AnimatedDigit value={timeLeft.days} label="DÍAS" />
-              <AnimatedDigit value={timeLeft.hours} label="HORAS" />
-              <AnimatedDigit value={timeLeft.minutes} label="MINUTOS" />
-              <AnimatedDigit value={timeLeft.seconds} label="SEGUNDOS" />
+            {/* Contador elegante y animado - versión con 4 columnas garantizadas */}
+            <div className="flex flex-row justify-between gap-1 w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
+              <div className="w-1/4">
+                <AnimatedDigit value={timeLeft.days} label="DÍAS" />
+              </div>
+              <div className="w-1/4">
+                <AnimatedDigit value={timeLeft.hours} label="HORAS" />
+              </div>
+              <div className="w-1/4">
+                <AnimatedDigit value={timeLeft.minutes} label="MIN" />
+              </div>
+              <div className="w-1/4">
+                <AnimatedDigit value={timeLeft.seconds} label="SEG" />
+              </div>
             </div>
             
             {/* Decoración en forma de línea elegante */}
