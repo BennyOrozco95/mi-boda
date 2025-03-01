@@ -408,11 +408,29 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Date Display in Elegant Typography */}
-      <section className="py-12 sm:py-16 text-center" style={{ backgroundColor: colors.background }}>
-        <div className="text-3xl sm:text-4xl md:text-5xl font-light" style={{ color: colors.primary }}>24</div>
-        <div className="text-3xl sm:text-4xl md:text-5xl font-light" style={{ color: colors.primary }}>Mar</div>
-        <div className="text-lg sm:text-xl md:text-2xl font-light mt-2" style={{ color: colors.accent }}>2025</div>
-      </section>
+<section className="py-12 sm:py-16 text-center" style={{ backgroundColor: colors.background }}>
+  <div className="relative max-w-xs sm:max-w-sm md:max-w-md mx-auto flex justify-center items-center">
+    {/* Año en vertical */}
+    <div className="absolute left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
+      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
+           style={{ color: colors.contrast, opacity: 0.8 }}>2</div>
+      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
+           style={{ color: colors.contrast, opacity: 0.8 }}>0</div>
+      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
+           style={{ color: colors.contrast, opacity: 0.8 }}>2</div>
+      <div className="text-xl sm:text-2xl md:text-3xl font-light tracking-wider" 
+           style={{ color: colors.contrast, opacity: 0.8 }}>5</div>
+    </div>
+    
+    {/* Día y mes centrados */}
+    <div className="text-center">
+      <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-wide" 
+           style={{ color: colors.contrast, opacity: 0.8 }}>24</div>
+      <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-light tracking-wide" 
+           style={{ color: colors.contrast, opacity: 0.8 }}>Mar</div>
+    </div>
+  </div>
+</section>
 
       {/* Family Section */}
       <section className="py-10 sm:py-12 md:py-16 px-4" style={{ backgroundColor: colors.secondary }}>
@@ -663,40 +681,6 @@ const WeddingApp: React.FC = () => {
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Fin del Evento</div>
           </div>
         </div>
-      </section>
-
-      {/* Video Section */}
-      <section style={{ backgroundColor: colors.background }}>
-        <div className="relative w-full h-40 sm:h-56 md:h-64 lg:h-80 overflow-hidden">
-          <div className="absolute inset-0 flex justify-center items-center">
-            <Image
-              src="/images/IMG_3286.jpg"
-              alt="Cathedral view"
-              fill
-              quality={100}
-              unoptimized
-              className="object-cover"
-              objectPosition="40% 30%"
-              sizes="100vw"
-            />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-white text-3xl sm:text-4xl font-light">K<span className="text-xl sm:text-2xl">&</span>A</span>
-            </div>
-            <div className="absolute bottom-4 left-4 flex items-center gap-2">
-              <button className="text-white" aria-label="Play video">
-                <Play size={14} />
-              </button>
-              <div className="w-12 sm:w-16 h-0.5 bg-white/40"></div>
-              <span className="text-white text-[10px]">00:00</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Dress Code Section */}
-      <section className="py-8 sm:py-10 px-4 text-center" style={{ backgroundColor: colors.secondary }}>
-        <h2 className="text-lg sm:text-xl italic mb-3 sm:mb-4 font-light" style={{ color: colors.primary }}>Dress Code</h2>
-        <p className="text-sm sm:text-base tracking-[0.25em] sm:tracking-[0.3em]" style={{ color: colors.contrast }}>RIGUROSO FORMAL</p>
       </section>
 
       {/* Registry Section */}
@@ -951,7 +935,6 @@ const WeddingApp: React.FC = () => {
             <p className="uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[8px] sm:text-xs mt-1">BACK TO TOP</p>
           </div>
         </button>
-        <p>© 2025 by My Wed Day. | www.mywedday.mx</p>
       </footer>
     </div>
   );
