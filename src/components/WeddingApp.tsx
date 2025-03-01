@@ -25,6 +25,40 @@ interface ColorThemeContextType {
   toggleColorPanel: () => void;
 }
 
+// Estilos globales para animaciones
+const GlobalStyles: React.FC = () => {
+  return (
+    <style jsx global>{`
+      @keyframes flipDown {
+        0% { transform: rotateX(0deg); }
+        100% { transform: rotateX(-90deg); }
+      }
+      
+      @keyframes flipUp {
+        0% { transform: rotateX(90deg); }
+        100% { transform: rotateX(0deg); }
+      }
+      
+      @keyframes pulse {
+        0% { opacity: 0; }
+        50% { opacity: 0.3; }
+        100% { opacity: 0; }
+      }
+      
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      @keyframes shine {
+        0% { background-position: -100% 0; }
+        100% { background-position: 200% 0; }
+      }
+    `}</style>
+  );
+};
+
 // Crear contexto para los colores
 const ColorThemeContext = createContext<ColorThemeContextType | undefined>(undefined);
 
@@ -38,6 +72,8 @@ const ColorThemeProvider: React.FC<{children: React.ReactNode}> = ({ children })
     accent: '#d97b4a',       // Acento - llamadas a la acción, íconos
   });
 
+  // Esta variable la mantenemos para la funcionalidad interna,
+  // pero nunca se mostrará el panel
   const [isColorPanelOpen, setIsColorPanelOpen] = useState(false);
 
   // Establecer variables CSS para colores
@@ -65,7 +101,7 @@ const ColorThemeProvider: React.FC<{children: React.ReactNode}> = ({ children })
     }));
   };
 
-  // Alternar panel de colores
+  // Alternar panel de colores (no se usará en la interfaz)
   const toggleColorPanel = () => {
     setIsColorPanelOpen(prev => !prev);
   };
@@ -86,69 +122,73 @@ const useColorTheme = (): ColorThemeContextType => {
   return context;
 };
 
-// Componente para el panel de administración de colores
-const ColorPanel: React.FC = () => {
-  const { colors, updateColor, isColorPanelOpen, toggleColorPanel } = useColorTheme();
-
-  const colorItems = [
-    { key: 'primary', label: 'Principal', description: 'Botones, encabezados, elementos destacados' },
-    { key: 'secondary', label: 'Secundario', description: 'Fondos de secciones, detalles sutiles' },
-    { key: 'background', label: 'Fondo', description: 'Fondo principal, aspecto limpio' },
-    { key: 'contrast', label: 'Contraste', description: 'Textos, bordes' },
-    { key: 'accent', label: 'Acento', description: 'Llamadas a la acción, íconos' },
-  ] as const;
-
-  if (!isColorPanelOpen) {
-    return (
-      <button 
-        onClick={toggleColorPanel}
-        className="fixed bottom-4 right-4 z-50 p-3 rounded-full shadow-lg"
-        style={{ backgroundColor: colors.primary, color: "#fff" }}
-      >
-        <Settings size={24} />
-      </button>
-    );
-  }
+// Componente de dígito animado para el contador
+const AnimatedDigit: React.FC<{value: number, label: string}> = ({ value, label }) => {
+  const [prevValue, setPrevValue] = useState(value);
+  const [isFlipping, setIsFlipping] = useState(false);
+  const { colors } = useColorTheme();
+  
+  useEffect(() => {
+    if (prevValue !== value) {
+      setIsFlipping(true);
+      const timer = setTimeout(() => {
+        setPrevValue(value);
+        setIsFlipping(false);
+      }, 500); // Duración de la animación
+      return () => clearTimeout(timer);
+    }
+  }, [value, prevValue]);
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 p-4 rounded-lg shadow-lg" style={{ backgroundColor: colors.background }}>
-      <div className="flex justify-between items-center mb-3">
-        <h3 className="font-medium text-sm" style={{ color: colors.contrast }}>Administración de Colores</h3>
-        <button 
-          onClick={toggleColorPanel}
-          className="text-sm py-1 px-2 rounded"
-          style={{ backgroundColor: colors.primary, color: '#fff' }}
+    <div 
+      className="relative overflow-hidden rounded-md"
+      style={{ 
+        backgroundColor: `${colors.contrast}15`,
+        boxShadow: `0 4px 6px ${colors.contrast}10, 0 1px 3px ${colors.contrast}08`,
+        backdropFilter: "blur(4px)"
+      }}
+    >
+      <div className="px-2 py-3 sm:py-5 md:py-6 flex flex-col items-center justify-center">
+        <div className="relative h-12 sm:h-14 md:h-16 lg:h-20 overflow-hidden w-full flex justify-center">
+          {/* Número actual */}
+          <div 
+            className={`absolute w-full text-center text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light transition-transform duration-500 ${isFlipping ? 'transform -translate-y-full opacity-0' : 'transform translate-y-0 opacity-100'}`}
+            style={{ color: 'white' }}
+          >
+            {prevValue}
+          </div>
+          
+          {/* Nuevo número */}
+          <div 
+            className={`absolute w-full text-center text-lg sm:text-2xl md:text-4xl lg:text-5xl font-light transition-transform duration-500 ${isFlipping ? 'transform translate-y-0 opacity-100' : 'transform translate-y-full opacity-0'}`}
+            style={{ color: 'white' }}
+          >
+            {value}
+          </div>
+        </div>
+        
+        <div 
+          className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-2 font-medium"
+          style={{ color: 'white' }}
         >
-          Cerrar
-        </button>
+          {label}
+        </div>
       </div>
       
-      <div className="space-y-3">
-        {colorItems.map((item) => (
-          <div key={item.key} className="flex flex-col">
-            <div className="flex justify-between items-center">
-              <label className="text-xs" style={{ color: colors.contrast }}>{item.label}</label>
-              <span className="text-xs" style={{ color: colors.contrast }}>{colors[item.key]}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <input
-                type="color"
-                value={colors[item.key]}
-                onChange={(e) => updateColor(item.key, e.target.value)}
-                className="w-8 h-8 border-0 p-0 cursor-pointer"
-              />
-              <input
-                type="text"
-                value={colors[item.key]}
-                onChange={(e) => updateColor(item.key, e.target.value)}
-                className="flex-1 text-xs p-1 border rounded"
-                style={{ borderColor: colors.secondary, color: colors.contrast }}
-              />
-            </div>
-            <p className="text-xs opacity-70 mt-1" style={{ color: colors.contrast }}>{item.description}</p>
-          </div>
-        ))}
-      </div>
+      {/* Línea decorativa */}
+      <div 
+        className="absolute left-0 top-0 h-full w-1"
+        style={{ background: `linear-gradient(to bottom, ${colors.primary}, transparent)` }}
+      ></div>
+      
+      {/* Efecto de brillo */}
+      <div 
+        className={`absolute inset-0 opacity-0 ${isFlipping ? 'animate-pulse' : ''}`} 
+        style={{ 
+          background: `linear-gradient(135deg, ${colors.primary}20 0%, transparent 50%, ${colors.primary}20 100%)`,
+          animation: isFlipping ? 'pulse 1s ease-in-out' : 'none'
+        }}
+      ></div>
     </div>
   );
 };
@@ -244,32 +284,40 @@ const WeddingApp: React.FC = () => {
             sizes="100vw"
             unoptimized
           />
-          <div className="absolute inset-0" style={{ backgroundColor: `${colors.contrast}30` }}></div>
+          <div className="absolute inset-0" style={{ 
+            background: `linear-gradient(to bottom, ${colors.contrast}40, ${colors.contrast}60)`,
+          }}></div>
         </div>
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-3 sm:px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8 md:mb-12 font-light">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl tracking-[0.2em] sm:tracking-[0.3em] mb-6 sm:mb-8 md:mb-12 font-light"
+              style={{ textShadow: `0 2px 4px ${colors.contrast}80` }}>
             PAOLA<span className="font-light">&</span>RUBEN
           </h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] sm:tracking-[0.3em] mb-8 sm:mb-12 md:mb-16">SAVE THE DATE</p>
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl tracking-[0.2em] sm:tracking-[0.3em] mb-8 sm:mb-12 md:mb-16"
+             style={{ textShadow: `0 1px 2px ${colors.contrast}80` }}>
+            SAVE THE DATE
+          </p>
           
-          <div className="grid grid-cols-4 gap-2 sm:gap-3 md:gap-5 max-w-[280px] sm:max-w-xs md:max-w-md lg:max-w-lg w-full text-center">
-            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.days}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">DÍAS</div>
+          {/* Contador elegante y animado */}
+          <div className="relative">
+            {/* Decoración en forma de línea elegante */}
+            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-px" style={{ 
+              background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` 
+            }}></div>
+            
+            <div className="grid grid-cols-4 gap-3 sm:gap-4 md:gap-6 max-w-[320px] sm:max-w-md md:max-w-lg lg:max-w-xl w-full text-center"
+                 style={{ filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.1))' }}>
+              <AnimatedDigit value={timeLeft.days} label="DÍAS" />
+              <AnimatedDigit value={timeLeft.hours} label="HORAS" />
+              <AnimatedDigit value={timeLeft.minutes} label="MINUTOS" />
+              <AnimatedDigit value={timeLeft.seconds} label="SEGUNDOS" />
             </div>
-            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.hours}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">HORAS</div>
-            </div>
-            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.minutes}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">MINUTOS</div>
-            </div>
-            <div className="backdrop-blur-sm py-2 sm:py-3 md:py-4 px-1 md:px-2" style={{ backgroundColor: `${colors.contrast}30` }}>
-              <div className="text-lg sm:text-xl md:text-3xl lg:text-4xl font-light text-white">{timeLeft.seconds}</div>
-              <div className="text-[8px] sm:text-xs tracking-widest sm:tracking-[0.2em] mt-1 text-white">SEGUNDOS</div>
-            </div>
+            
+            {/* Decoración en forma de línea elegante */}
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 w-16 h-px" style={{ 
+              background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` 
+            }}></div>
           </div>
         </div>
       </section>
@@ -870,11 +918,8 @@ const WeddingApp: React.FC = () => {
             <p className="uppercase tracking-[0.2em] sm:tracking-[0.3em] text-[8px] sm:text-xs mt-1">BACK TO TOP</p>
           </div>
         </button>
-        <p>© 2025 by My Wed Day. | www.mywedday.mx</p>
+        <p>.</p>
       </footer>
-
-      {/* Color Panel */}
-      <ColorPanel />
     </div>
   );
 };
@@ -883,6 +928,7 @@ const WeddingApp: React.FC = () => {
 const App: React.FC = () => {
   return (
     <ColorThemeProvider>
+      <GlobalStyles />
       <WeddingApp />
     </ColorThemeProvider>
   );
