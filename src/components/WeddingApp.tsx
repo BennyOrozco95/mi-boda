@@ -212,8 +212,7 @@ const ClockDigit: React.FC<{value: number, label: string}> = ({ value, label }) 
       </div>
     </div>
   );
-};
-};
+}
 
 // Componente principal de la aplicación
 const WeddingApp: React.FC = () => {
