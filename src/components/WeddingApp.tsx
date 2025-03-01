@@ -408,26 +408,63 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Date Display in Elegant Typography */}
-<section className="py-12 sm:py-16 text-center" style={{ backgroundColor: colors.background }}>
-  <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto" style={{ height: "180px" }}>
-    {/* Año en vertical */}
-    <div className="absolute left-4 sm:left-8 md:left-0 top-1/2 transform -translate-y-1/2 flex flex-col items-start">
-      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
-           style={{ color: '#8a7e6d' }}>2</div>
-      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
-           style={{ color: '#8a7e6d' }}>0</div>
-      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
-           style={{ color: '#8a7e6d' }}>2</div>
-      <div className="text-2xl sm:text-3xl md:text-4xl font-light tracking-normal leading-none"
-           style={{ color: '#8a7e6d' }}>5</div>
-    </div>
-   
-    {/* Día y mes centrados pero ligeramente a la derecha */}
-    <div className="absolute right-1/2 sm:right-1/3 top-1/2 transform translate-x-1/2 -translate-y-1/2 text-right">
-      <div className="text-6xl sm:text-7xl md:text-8xl font-light tracking-normal"
-           style={{ color: '#8a7e6d', lineHeight: '0.9' }}>24</div>
-      <div className="text-6xl sm:text-7xl md:text-8xl font-light tracking-normal"
-           style={{ color: '#8a7e6d', lineHeight: '0.9' }}>Mar</div>
+<section className="py-12 sm:py-16 text-center relative overflow-hidden" style={{ backgroundColor: colors.background }}>
+  {/* Elemento decorativo (línea vertical) */}
+  <div 
+    className="absolute h-24 md:h-32 w-px left-1/2 transform -translate-x-1/2" 
+    style={{ backgroundColor: colors.primary, opacity: 0.3 }}
+  ></div>
+  
+  <div className="container mx-auto px-4">
+    <div className="relative max-w-xl mx-auto">
+      {/* Etiqueta de evento */}
+      <div className="mb-4 md:mb-6">
+        <span 
+          className="inline-block px-4 py-1 text-xs md:text-sm font-serif tracking-widest uppercase"
+          style={{ color: colors.primary }}
+        >
+          Evento Principal
+        </span>
+      </div>
+      
+      {/* Contenedor principal de la fecha */}
+      <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-8">
+        {/* Día */}
+        <div className="relative">
+          <span 
+            className="block text-7xl sm:text-8xl md:text-9xl font-light leading-none"
+            style={{ color: colors.primary }}
+          >
+            17
+          </span>
+          <div 
+            className="absolute -bottom-2 left-0 w-full h-0.5"
+            style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}
+          ></div>
+        </div>
+        
+        {/* Mes y Año */}
+        <div className="text-center">
+          <span 
+            className="block text-4xl md:text-5xl font-light tracking-wide uppercase"
+            style={{ color: colors.primary }}
+          >
+            Mayo
+          </span>
+          <span 
+            className="block text-4xl md:text-5xl font-light"
+            style={{ color: colors.primary }}
+          >
+            2025
+          </span>
+        </div>
+      </div>
+      
+      {/* Elementos decorativos (sutiles círculos) */}
+      <div className="absolute -z-10 w-64 h-64 rounded-full opacity-5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" 
+           style={{ backgroundColor: colors.primary }}></div>
+      <div className="absolute -z-10 w-24 h-24 rounded-full opacity-5 -top-6 -right-6" 
+           style={{ backgroundColor: colors.accent }}></div>
     </div>
   </div>
 </section>
