@@ -395,7 +395,7 @@ const WeddingApp: React.FC = () => {
       <section className="w-full">
         <div className="relative w-full" style={{ height: "400px" }}>
           <Image
-            src="/images/IMG_3360.jpg"
+            src="/images/IMG_3314.jpg"
             alt="Couple walking"
             fill
             quality={100}
@@ -478,20 +478,14 @@ const WeddingApp: React.FC = () => {
         <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div>
             <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide text-center" style={{ color: colors.contrast }}>Padres de la Novia:</h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Mónica Elizabeth Rodríguez López</p>
-            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Humberto Sandoval García</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>María Mercedes Rodríguez Rodríguez</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Ramiro Rodríguez Ramírez</p>
           </div>
           
           <div>
             <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide text-center" style={{ color: colors.contrast }}>Padres del Novio:</h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Esther Fernández Del Real</p>
-            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Pedro Ezequiel Montero Carbajal</p>
-          </div>
-          
-          <div>
-            <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide text-center" style={{ color: colors.contrast }}>Y Nuestros Padrinos:</h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Mario Rodríguez Sandoval</p>
-            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>María Stephane Oviedo Silva</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Soledad Orozco Garay</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Ruben De Santiago Carrillo</p>
           </div>
         </div>
       </section>
@@ -513,7 +507,7 @@ const WeddingApp: React.FC = () => {
           </div>
           <div className="relative aspect-square sm:h-40 md:h-52 lg:h-64">
             <Image
-              src="/images/IMG_3314.jpg"
+              src="/images/IMG_3360.jpg"
               alt="Bouquet"
               fill
               quality={100}
@@ -560,13 +554,13 @@ const WeddingApp: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-16">
             <div className="text-center md:w-5/12">
               <h3 className="text-xl sm:text-2xl italic mb-4 font-light" style={{ color: colors.primary }}>Ceremonia</h3>
-              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>SAN PABLO LAS FUENTES</p>
-              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Calle San Antonio 105</p>
-              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Las Fuentes</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Zapopan, Jalisco</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>06:00 p.m.</p>
+              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>Parroquia De San Judas Tadeo</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Calle Reforma #2</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Centro</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>01:30 p.m.</p>
               <a 
-                href="https://maps.app.goo.gl/MxYkNpTJQKgQZk4o6" 
+                href="https://maps.app.goo.gl/dqZjPfS7LEXVtmvn7" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-1.5 border rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
@@ -588,13 +582,12 @@ const WeddingApp: React.FC = () => {
             
             <div className="text-center md:w-5/12">
               <h3 className="text-xl sm:text-2xl italic mb-4 font-light" style={{ color: colors.primary }}>Recepción</h3>
-              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>VERDE MADERA EVENTOS</p>
-              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 8040</p>
-              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Las Fuentes, 45070</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Zapopan, Jal.</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>08:00 p.m.</p>
+              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>Hacienda la Encarnación</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Conocida Hacienda</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>03:30 p.m.</p>
               <a 
-                href="https://maps.app.goo.gl/vWHBCGS3wEgqB3JV7" 
+                href="https://maps.app.goo.gl/9GVXjwCCJxQf5rhM9" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-1.5 border rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
@@ -628,9 +621,11 @@ const WeddingApp: React.FC = () => {
     </h2>
     
     <div className="my-4 text-2xl sm:text-3xl md:text-4xl font-light" style={{ color: colors.primary }}>
-      Lua 
+      Lua Madelayn
+      <br />
       & 
-      Laya
+      <br />
+      Laia Marlen
     </div>
     
     <p className="text-xs sm:text-sm max-w-xs mx-auto mb-4" style={{ color: colors.contrast }}>
@@ -655,32 +650,62 @@ const WeddingApp: React.FC = () => {
         <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div className="flex items-center">
             <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              06:00 p.m.
+              01:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
               🏛️
+            </div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Bautizo Lua & Laia</div>
+          </div>
+          
+          <div className="flex items-center">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
+              01:30 p.m.
+            </div>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🥂
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Ceremonia Religiosa</div>
           </div>
           
           <div className="flex items-center">
             <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              08:00 p.m.
-            </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🥂
-            </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Coctel de Bienvenida</div>
-          </div>
-          
-          <div className="flex items-center">
-            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              08:30 p.m.
+              03:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
               🎵
             </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Evento Social</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Boda Civil</div>
+          </div>
+          
+          <div className="flex items-center">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
+              04:30 p.m.
+            </div>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              🍽️
+            </div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Comida</div>
+          </div>
+          
+          <div className="flex items-center">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
+              06:30 p.m.
+            </div>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              ❤️
+            </div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Fotos - Brindis</div>
+          </div>
+          
+          <div className="flex items-center">
+            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
+              07:30 p.m.
+            </div>
+            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
+              💃
+            </div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Todos A La Pista</div>
           </div>
           
           <div className="flex items-center">
@@ -688,74 +713,19 @@ const WeddingApp: React.FC = () => {
               09:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🍽️
-            </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Cena a 3 tiempos</div>
-          </div>
-          
-          <div className="flex items-center">
-            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              10:00 p.m.
-            </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              ❤️
-            </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Primer Baile</div>
-          </div>
-          
-          <div className="flex items-center">
-            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              10:30 p.m.
-            </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              💃
-            </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Se abre pista</div>
-          </div>
-          
-          <div className="flex items-center">
-            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              11:30 p.m.
-            </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
               🥃
             </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Ronda de shots</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Liga Y Ramo</div>
           </div>
-        </div>
-      </section>
 
-      {/* Additional Timeline Items */}
-      <section className="py-8 sm:py-10 px-4" style={{ backgroundColor: colors.secondary }}>
-        <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div className="flex items-center">
             <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
               12:00 a.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              ✨
+              🥃
             </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Luces & Fuegos</div>
-          </div>
-          
-          <div className="flex items-center">
-            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              02:00 a.m.
-            </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🌮
-            </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Cena de madrugada</div>
-          </div>
-          
-          <div className="flex items-center">
-            <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              03:00 a.m.
-            </div>
-            <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              👋
-            </div>
-            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Fin del Evento</div>
+            <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Fin Del Evento</div>
           </div>
         </div>
       </section>
@@ -768,32 +738,6 @@ const WeddingApp: React.FC = () => {
         </p>
         
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
-              <div className="font-bold text-lg" style={{ color: colors.primary }}>Liverpool</div>
-            </div>
-            <p className="text-[10px] sm:text-xs mb-2 sm:mb-3" style={{ color: colors.contrast }}>Evento: 02960421</p>
-            <a 
-              href="https://www.liverpool.com.mx/tienda/home" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
-              style={{ backgroundColor: colors.primary, color: 'white' }}
-            >
-              IR AL SITIO
-            </a>
-          </div>
-          
-          <div className="text-center">
-            <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
-              <div className="font-bold text-lg" style={{ color: colors.primary }}>BBVA</div>
-            </div>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Sofía Sandoval Rodríguez</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Cuenta: 47986421</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Clabe: 012320005339129</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Tarjeta: 5370 0990 4412 3123</p>
-          </div>
-          
           <div className="text-center">
             <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
               <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
@@ -822,19 +766,6 @@ const WeddingApp: React.FC = () => {
         </p>
       </section>
 
-      {/* No Kids Section */}
-      <section className="py-8 sm:py-12 px-4 text-center" style={{ backgroundColor: colors.secondary }}>
-        <h2 className="text-lg sm:text-xl italic mb-4 sm:mb-6 font-light" style={{ color: colors.primary }}>¡Te agradecemos!</h2>
-        <p className="max-w-xs sm:max-w-md mx-auto text-[10px] sm:text-xs mb-4 sm:mb-6" style={{ color: colors.contrast }}>
-          Adoramos a sus pequeños, pero creemos que necesitan una noche libre.
-          <br />
-          Solo adultos por favor.
-        </p>
-        <div className="flex justify-center">
-          <div className="text-2xl" style={{ color: colors.accent }}>👨‍👩‍</div>
-        </div>
-      </section>
-
       {/* Newspaper Section */}
       <section className="py-8 sm:py-10" style={{ backgroundColor: colors.background }}>
         <div className="relative w-full mx-auto max-w-2xl" style={{ height: "350px" }}>
@@ -854,13 +785,10 @@ const WeddingApp: React.FC = () => {
       {/* Contact Section */}
       <section className="py-10 sm:py-12 px-4 text-center" style={{ backgroundColor: colors.background }}>
         <h2 className="text-base sm:text-lg uppercase tracking-wide mb-4 sm:mb-6" style={{ color: colors.primary }}>
-          CONTACTA A
+          NUESTRO EQUIPO DE ORGANIZACION SE ESTARÁ COMUNICANDO CON USTEDES DESDE EL SIGUIENTE NUMERO 4941188352
           <br />
-          ALEXA & MARCO
+          LOS DIAS 21, 22 Y 23 DE ABRIL PARA CONFIRMAR SU ASISTENCIA
         </h2>
-        <p className="mb-4 sm:mb-6 text-[10px] sm:text-xs" style={{ color: colors.contrast }}>
-          Envía un mensaje por Whatsapp escaneando el código o en el botón 'Enviar Mensaje'
-        </p>
         <div className="max-w-xs mx-auto">
           <div 
             className="w-32 h-32 mx-auto mb-6 sm:mb-8 border-2 flex items-center justify-center" 
@@ -869,24 +797,6 @@ const WeddingApp: React.FC = () => {
             <span style={{ color: colors.primary }}>QR Code</span>
           </div>
           <div className="space-y-3">
-            <a 
-              href="https://wa.me/523334567890?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20la%20boda" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block w-full px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs transition-colors"
-              style={{ backgroundColor: colors.primary, color: 'white' }}
-            >
-              CONFIRMAR ASISTENCIA
-            </a>
-            <a 
-              href="https://wa.me/523334567890" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="block w-full px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-xs transition-colors"
-              style={{ backgroundColor: colors.accent, color: 'white' }}
-            >
-              ENVIAR MENSAJE
-            </a>
           </div>
         </div>
       </section>
@@ -897,13 +807,12 @@ const WeddingApp: React.FC = () => {
         
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>CITY EXPRESS PLUS</h3>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Av. Adolfo López Mateos Sur 1450</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Colonia las Villas</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Palomar, Jal.</p>
+            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>Hacienda La Encarnación</h3>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Conocida Hacienda</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
             <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 8000 0770</p>
             <a 
-              href="https://maps.app.goo.gl/Fwi59pjqWAPPjHxz8" 
+              href="https://maps.app.goo.gl/9GVXjwCCJxQf5rhM9" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
