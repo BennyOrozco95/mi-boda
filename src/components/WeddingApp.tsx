@@ -366,7 +366,7 @@ const WeddingApp: React.FC = () => {
           {/* Subtle Audio Player */}
           <div className="mt-8 sm:mt-10 flex justify-center">
             <audio ref={audioRef} loop>
-              <source src="/music/love-song.mp3" type="audio/mpeg" />
+              <source src="/music/fonseca.mp3" type="audio/mpeg" />
               Your browser does not support the audio element.
             </audio>
             
@@ -473,12 +473,12 @@ const WeddingApp: React.FC = () => {
 
       {/* Family Section */}
       <section className="py-10 sm:py-12 md:py-16 px-4" style={{ backgroundColor: colors.secondary }}>
-        <h2 className="text-lg sm:text-xl md:text-2xl italic text-center mb-8 sm:mb-12 md:mb-16" style={{ color: colors.primary }}>En compañía de</h2>
+        <h2 className="text-lg sm:text-xl md:text-2xl italic text-center mb-8 sm:mb-12 md:mb-16" style={{ color: colors.primary }}>Con la bendición de</h2>
         
         <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div>
             <h3 className="text-sm sm:text-base md:text-lg mb-2 sm:mb-3 tracking-wide text-center" style={{ color: colors.contrast }}>Padres de la Novia:</h3>
-            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>María Mercedes Rodríguez Rodríguez</p>
+            <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>✞ María Mercedes Rodríguez Rodríguez ✞</p>
             <p className="text-[10px] sm:text-xs md:text-sm text-center" style={{ color: colors.contrast }}>Ramiro Rodríguez Ramírez</p>
           </div>
           
