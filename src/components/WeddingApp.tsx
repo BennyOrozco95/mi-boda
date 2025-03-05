@@ -743,8 +743,7 @@ const WeddingApp: React.FC = () => {
               <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
             </div>
             <a 
-              href="https://www.amazon.com.mx/" 
-              target="_blank" 
+              href="https://amzn.to/3Fhxze7"
               rel="noopener noreferrer"
               className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
               style={{ backgroundColor: colors.primary, color: 'white' }}
@@ -803,7 +802,7 @@ const WeddingApp: React.FC = () => {
 
       {/* Hotel Options */}
       <section className="py-10 sm:py-12 px-4" style={{ backgroundColor: colors.secondary }}>
-        <h2 className="text-lg sm:text-xl italic text-center mb-8 sm:mb-10 font-light" style={{ color: colors.primary }}>Hospedaje</h2>
+        <h2 className="text-lg sm:text-xl italic text-center mb-8 sm:mb-10 font-light" style={{ color: colors.primary }}>Sugerencia De Hospedaje</h2>
         
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div className="text-center">
