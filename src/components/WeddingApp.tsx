@@ -623,11 +623,11 @@ const WeddingApp: React.FC = () => {
     </h2>
     
     <div className="my-4 text-2xl sm:text-3xl md:text-4xl font-light" style={{ color: colors.primary }}>
-      Lua Madelayn
+      Lua Madelayn Mendoza Rodríguez
       <br />
       & 
       <br />
-      Laia Marlen
+      Laia Marlen Mendoza Rodríguez
     </div>
     
     <p className="text-xs sm:text-sm max-w-xs mx-auto mb-4" style={{ color: colors.contrast }}>
@@ -655,7 +655,7 @@ const WeddingApp: React.FC = () => {
               01:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🏛️
+              <img src="/images/bible.png" alt="Bautizo" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Bautizo Lua & Laia</div>
           </div>
@@ -665,7 +665,7 @@ const WeddingApp: React.FC = () => {
               01:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🥂
+              <img src="/images/ceremonia.png" alt="Ceremonia" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Ceremonia Religiosa</div>
           </div>
@@ -675,7 +675,7 @@ const WeddingApp: React.FC = () => {
               03:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🎵
+              <img src="/images/civil.png" alt="Boda Civil" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Boda Civil</div>
           </div>
@@ -685,7 +685,7 @@ const WeddingApp: React.FC = () => {
               04:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🍽️
+              <img src="/images/food.png" alt="Comida" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Comida</div>
           </div>
@@ -695,7 +695,7 @@ const WeddingApp: React.FC = () => {
               06:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              ❤️
+              <img src="/images/photos.png" alt="Fotos" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Fotos - Brindis</div>
           </div>
@@ -705,7 +705,7 @@ const WeddingApp: React.FC = () => {
               07:30 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              💃
+              <img src="/images/danced.png" alt="Baile" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Todos A La Pista</div>
           </div>
@@ -715,7 +715,7 @@ const WeddingApp: React.FC = () => {
               09:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🥃
+              <img src="/images/ramo.png" alt="Liga y Ramo" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Liga Y Ramo</div>
           </div>
@@ -725,7 +725,7 @@ const WeddingApp: React.FC = () => {
               12:00 a.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
-              🥃
+              <img src="/images/hotel.png" alt="Fin del Evento" className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <div className="text-sm sm:text-base md:text-lg font-medium" style={{ color: colors.contrast }}>Fin Del Evento</div>
           </div>
