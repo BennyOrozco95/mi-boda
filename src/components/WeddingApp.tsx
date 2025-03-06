@@ -357,6 +357,8 @@ const WeddingApp: React.FC = () => {
 
       {/* Quote Section with Audio Player */}
       <section className="py-10 sm:py-12 md:py-16" style={{ backgroundColor: colors.background }}>
+      <h2 className="text-lg sm:text-xl md:text-2xl italic text-center mb-8 sm:mb-12 md:mb-16" style={{ color: colors.primary }}>Nos complace invitarles a celebrar nuestra union</h2>
+
         <div className="max-w-xs sm:max-w-lg md:max-w-2xl mx-auto text-center px-4 sm:px-6">
           <div className="italic text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed" style={{ color: colors.contrast }}>
             "Cuando te das cuenta de que deseas pasar el resto de tu vida con alguien, 
