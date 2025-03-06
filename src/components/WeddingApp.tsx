@@ -636,9 +636,9 @@ const WeddingApp: React.FC = () => {
     
     {/* Decorative small icons */}
     <div className="flex justify-center gap-6 my-4">
+      <div style={{ color: colors.accent }}></div>
       <div style={{ color: colors.accent }}>🕊️</div>
-      <div style={{ color: colors.accent }}>💧</div>
-      <div style={{ color: colors.accent }}>✨</div>
+      <div style={{ color: colors.accent }}></div>
     </div>
     
     {/* Decorative line */}
@@ -784,21 +784,11 @@ const WeddingApp: React.FC = () => {
       </section>
 
       {/* Contact Section */}
-      <section className="py-10 sm:py-12 px-4 text-center" style={{ backgroundColor: colors.background }}>
-        <h2 className="text-base sm:text-lg uppercase tracking-wide mb-4 sm:mb-6" style={{ color: colors.primary }}>
-          NUESTRO EQUIPO DE ORGANIZACION SE ESTARÁ COMUNICANDO CON USTEDES DESDE EL SIGUIENTE NUMERO 4941188352
-          <br />
-          LOS DIAS 21, 22 Y 23 DE ABRIL PARA CONFIRMAR SU ASISTENCIA
-        </h2>
-        <div className="max-w-xs mx-auto">
-          <div 
-            className="w-32 h-32 mx-auto mb-6 sm:mb-8 border-2 flex items-center justify-center" 
-            style={{ borderColor: colors.primary, backgroundColor: colors.secondary }}
-          >
-            <span style={{ color: colors.primary }}>QR Code</span>
-          </div>
-          <div className="space-y-3">
-          </div>
+      <section className="py-10 sm:py-12 px-4" style={{ backgroundColor: colors.background }}>
+        <div className="max-w-2xl mx-auto">
+          <h2 className="text-base sm:text-lg uppercase tracking-wide mb-4 sm:mb-6 text-justify" style={{ color: colors.primary }}>
+            NUESTRO EQUIPO DE ORGANIZACION SE ESTARÁ COMUNICANDO CON USTEDES DESDE EL SIGUIENTE NUMERO 4941188352 LOS DIAS 21, 22 Y 23 DE ABRIL PARA CONFIRMAR SU ASISTENCIA
+          </h2>
         </div>
       </section>
 
@@ -811,7 +801,7 @@ const WeddingApp: React.FC = () => {
             <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>Hacienda La Encarnación</h3>
             <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Conocida Hacienda</p>
             <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
-            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 33 8000 0770</p>
+            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 499 100 0003</p>
             <a 
               href="https://maps.app.goo.gl/9GVXjwCCJxQf5rhM9" 
               target="_blank" 
