@@ -361,8 +361,7 @@ const WeddingApp: React.FC = () => {
 
         <div className="max-w-xs sm:max-w-lg md:max-w-2xl mx-auto text-center px-4 sm:px-6">
           <div className="italic text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed" style={{ color: colors.contrast }}>
-            "Cuando te das cuenta de que deseas pasar el resto de tu vida con alguien, 
-            quieres que el resto de tu vida <span className="font-semibold">empiece lo antes posible</span>"
+            "Después de nueve años descubriendo el amor día a día, hemos decidido que es momento de prometernos, ante Dios y nuestros seres queridos, que seguiremos construyendo juntos esta historia que comenzó con un <span className="font-semibold">'hola'</span> y continuará con un <span className="font-semibold">'sí, acepto'</span>"
           </div>
           
           {/* Subtle Audio Player */}
