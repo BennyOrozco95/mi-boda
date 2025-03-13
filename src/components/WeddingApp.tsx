@@ -299,11 +299,10 @@ const WeddingApp: React.FC = () => {
             alt="Wedding background"
             fill
             priority
-            quality={100}
+            quality={85}
             className="object-cover"
             objectPosition="center center"
             sizes="100vw"
-            unoptimized
           />
           <div className="absolute inset-0" style={{ 
             background: `linear-gradient(to bottom, ${colors.contrast}40, ${colors.contrast}60)`,
@@ -399,11 +398,10 @@ const WeddingApp: React.FC = () => {
             src="/images/IMG_3314.jpg"
             alt="Couple walking"
             fill
-            quality={100}
+            quality={85}
             className="object-cover"
             objectPosition="50% 30%" 
             sizes="100vw"
-            unoptimized
           />
         </div>
       </section>
@@ -499,8 +497,7 @@ const WeddingApp: React.FC = () => {
               src="/images/IMG_3336.jpg"
               alt="Couple photo"
               fill
-              quality={100}
-              unoptimized
+              quality={85}
               className="object-cover"
               objectPosition="center 25%"
               sizes="(max-width: 640px) 33vw, (max-width: 768px) 33vw, 33vw"
@@ -511,8 +508,7 @@ const WeddingApp: React.FC = () => {
               src="/images/IMG_3360.jpg"
               alt="Bouquet"
               fill
-              quality={100}
-              unoptimized
+              quality={85}
               className="object-cover"
               objectPosition="center 40%"
               sizes="(max-width: 640px) 33vw, (max-width: 768px) 33vw, 33vw"
@@ -523,8 +519,7 @@ const WeddingApp: React.FC = () => {
               src="/images/IMG_3304.jpg"
               alt="Couple walking"
               fill
-              quality={100}
-              unoptimized
+              quality={85}
               className="object-cover"
               objectPosition="60% center"
               sizes="(max-width: 640px) 33vw, (max-width: 768px) 33vw, 33vw"
@@ -540,8 +535,7 @@ const WeddingApp: React.FC = () => {
             src="/images/IMG_3289.jpg"
             alt="Couple toasting"
             fill
-            quality={100}
-            unoptimized
+            quality={85}
             className="object-cover"
             objectPosition="center 35%" 
             sizes="100vw"
@@ -860,8 +854,7 @@ const WeddingApp: React.FC = () => {
             src="/images/IMG_3281.jpg" 
             alt="Wedding Newspaper"
             fill
-            quality={100}
-            unoptimized
+            quality={85}
             className="object-contain"
             objectPosition="center center"
             sizes="(max-width: 768px) 100vw, 50vw"
