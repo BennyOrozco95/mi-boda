@@ -616,7 +616,7 @@ const WeddingApp: React.FC = () => {
     
     {/* Elegant description */}
     <p className="text-sm sm:text-base max-w-xs sm:max-w-sm mx-auto mb-8" style={{ color: colors.contrast }}>
-      Para hacer de este día aún más especial, les invitamos a lucir sus mejores galas con vestimenta formal.
+    Para nuestra boda, hemos elegido un ambiente formal. ¡Gracias por acompañarnos en este día tan importante!
     </p>
     
     {/* Visual formal dress representation */}
