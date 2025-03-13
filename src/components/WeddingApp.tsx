@@ -642,49 +642,49 @@ const WeddingApp: React.FC = () => {
       </p>
       
       {/* Color swatches with prohibited sign */}
-      <div className="flex justify-center gap-6 sm:gap-8 mt-4">
-        {/* Color 1 - Prohibited color with elegant X */}
-        <div className="relative">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full" style={{ backgroundColor: '#4a2c1d' }}></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ border: `1px solid ${colors.primary}40` }}>
-              <div className="relative w-full h-full">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px rotate-45" style={{ backgroundColor: colors.primary }}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px -rotate-45" style={{ backgroundColor: colors.primary }}></div>
-              </div>
-            </div>
-          </div>
-          <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Chocolate</p>
-        </div>
-        
-        {/* Color 2 - Prohibited color with elegant X */}
-        <div className="relative">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full" style={{ backgroundColor: '#a85d31' }}></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ border: `1px solid ${colors.primary}40` }}>
-              <div className="relative w-full h-full">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px rotate-45" style={{ backgroundColor: colors.primary }}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px -rotate-45" style={{ backgroundColor: colors.primary }}></div>
-              </div>
-            </div>
-          </div>
-          <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Terracota</p>
-        </div>
-        
-        {/* Color 3 - Prohibited color with elegant X */}
-        <div className="relative">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full" style={{ backgroundColor: 'white' }}></div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ border: `1px solid ${colors.primary}40` }}>
-              <div className="relative w-full h-full">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px rotate-45" style={{ backgroundColor: colors.primary }}></div>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px -rotate-45" style={{ backgroundColor: colors.primary }}></div>
-              </div>
-            </div>
-          </div>
-          <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Blanco</p>
+      <div className="flex justify-center gap-12 sm:gap-16 mt-4">
+  {/* Color 1 - Blanco */}
+  <div className="relative flex flex-col items-center">
+    <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden" 
+         style={{ 
+           backgroundColor: 'white', 
+           border: `1px solid ${colors.contrast}30`,
+           boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+         }}>
+      {/* X mark with better contrast */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-8 h-8 sm:w-10 sm:h-10">
+          <div className="absolute top-1/2 left-0 right-0 h-0.5 transform -translate-y-1/2 rotate-45" 
+               style={{ backgroundColor: colors.primary }}></div>
+          <div className="absolute top-1/2 left-0 right-0 h-0.5 transform -translate-y-1/2 -rotate-45" 
+               style={{ backgroundColor: colors.primary }}></div>
         </div>
       </div>
+    </div>
+    <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Blanco</p>
+  </div>
+  
+  {/* Color 2 - Beige */}
+  <div className="relative flex flex-col items-center">
+    <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden" 
+         style={{ 
+           backgroundColor: '#E3D0BE', 
+           border: `1px solid ${colors.contrast}30`,
+           boxShadow: '0 2px 6px rgba(0,0,0,0.1)'
+         }}>
+      {/* X mark with better contrast */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-8 h-8 sm:w-10 sm:h-10">
+          <div className="absolute top-1/2 left-0 right-0 h-0.5 transform -translate-y-1/2 rotate-45" 
+               style={{ backgroundColor: colors.contrast }}></div>
+          <div className="absolute top-1/2 left-0 right-0 h-0.5 transform -translate-y-1/2 -rotate-45" 
+               style={{ backgroundColor: colors.contrast }}></div>
+        </div>
+      </div>
+    </div>
+    <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Beige</p>
+  </div>
+</div>
     </div>
     
     {/* Decorative element */}
