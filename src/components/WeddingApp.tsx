@@ -605,6 +605,93 @@ const WeddingApp: React.FC = () => {
         </div>
       </section>
 
+      {/* Dress Code Section */}
+<section className="py-10 sm:py-12 px-4" style={{ 
+  background: `linear-gradient(to right, ${colors.background} 0%, ${colors.secondary}30 50%, ${colors.background} 100%)` 
+}}>
+  <div className="max-w-md sm:max-w-lg mx-auto text-center">
+    <h2 className="text-lg sm:text-xl md:text-2xl italic text-center mb-6 sm:mb-8 font-light" style={{ color: colors.primary }}>
+      Código de Vestimenta
+    </h2>
+    
+    {/* Elegant description */}
+    <p className="text-sm sm:text-base max-w-xs sm:max-w-sm mx-auto mb-8" style={{ color: colors.contrast }}>
+      Para hacer de este día aún más especial, les invitamos a lucir sus mejores galas con vestimenta formal.
+    </p>
+    
+    {/* Visual formal dress representation */}
+    <div className="flex justify-center gap-12 sm:gap-16 mb-10 sm:mb-12">
+      <div className="flex flex-col items-center">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+          <img src="/images/suit.png" alt="Traje formal" className="w-10 h-10 sm:w-12 sm:h-12" />
+        </div>
+        <p className="text-xs sm:text-sm mt-2" style={{ color: colors.contrast }}>Formal</p>
+      </div>
+      <div className="flex flex-col items-center">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center">
+          <img src="/images/dress.png" alt="Vestido formal" className="w-10 h-10 sm:w-12 sm:h-12" />
+        </div>
+        <p className="text-xs sm:text-sm mt-2" style={{ color: colors.contrast }}>Formal</p>
+      </div>
+    </div>
+    
+    {/* Reserved colors section */}
+    <div className="mb-6 sm:mb-8">
+      <p className="text-xs sm:text-sm italic mb-5" style={{ color: colors.primary }}>
+        Con la finalidad de que los novios destaquen, les solicitamos amablemente evitar los siguientes colores:
+      </p>
+      
+      {/* Color swatches with prohibited sign */}
+      <div className="flex justify-center gap-6 sm:gap-8 mt-4">
+        {/* Color 1 - Prohibited color with elegant X */}
+        <div className="relative">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full" style={{ backgroundColor: '#4a2c1d' }}></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ border: `1px solid ${colors.primary}40` }}>
+              <div className="relative w-full h-full">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px rotate-45" style={{ backgroundColor: colors.primary }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px -rotate-45" style={{ backgroundColor: colors.primary }}></div>
+              </div>
+            </div>
+          </div>
+          <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Chocolate</p>
+        </div>
+        
+        {/* Color 2 - Prohibited color with elegant X */}
+        <div className="relative">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full" style={{ backgroundColor: '#a85d31' }}></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ border: `1px solid ${colors.primary}40` }}>
+              <div className="relative w-full h-full">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px rotate-45" style={{ backgroundColor: colors.primary }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px -rotate-45" style={{ backgroundColor: colors.primary }}></div>
+              </div>
+            </div>
+          </div>
+          <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Terracota</p>
+        </div>
+        
+        {/* Color 3 - Prohibited color with elegant X */}
+        <div className="relative">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full" style={{ backgroundColor: 'white' }}></div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center overflow-hidden" style={{ border: `1px solid ${colors.primary}40` }}>
+              <div className="relative w-full h-full">
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px rotate-45" style={{ backgroundColor: colors.primary }}></div>
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-px -rotate-45" style={{ backgroundColor: colors.primary }}></div>
+              </div>
+            </div>
+          </div>
+          <p className="text-[10px] sm:text-xs mt-2" style={{ color: colors.contrast }}>Blanco</p>
+        </div>
+      </div>
+    </div>
+    
+    {/* Decorative element */}
+    <div className="w-20 h-px mx-auto mt-8" style={{ background: `linear-gradient(to right, transparent, ${colors.primary}, transparent)` }}></div>
+  </div>
+</section>
+
       {/* Baptism Special Section */}
 <section className="py-10 sm:py-12 px-4" style={{ 
   background: `linear-gradient(to right, ${colors.background} 0%, ${colors.secondary}40 50%, ${colors.background} 100%)` 
