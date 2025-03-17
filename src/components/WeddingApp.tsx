@@ -812,29 +812,39 @@ const WeddingApp: React.FC = () => {
         </div>
       </section>
 
-      {/* Registry Section */}
-      <section className="py-12 sm:py-16 px-4" style={{ backgroundColor: colors.background }}>
-        <h2 className="text-lg sm:text-xl italic text-center mb-3 sm:mb-4 font-light" style={{ color: colors.primary }}>Regalos</h2>
-        <p className="text-center text-[10px] sm:text-xs mb-8 sm:mb-12" style={{ color: colors.contrast }}>
-          ¡El regalo es opcional, lo más importante para nosotros, es tu compañía!
-        </p>
-        
-        <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
-              <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
-            </div>
-            <a 
-              href="https://amzn.to/3Fhxze7"
-              rel="noopener noreferrer"
-              className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
-              style={{ backgroundColor: colors.primary, color: 'white' }}
-            >
-              IR AL SITIO
-            </a>
-          </div>
-        </div>
-      </section>
+     {/* Registry Section */}
+<section className="py-12 sm:py-16 px-4" style={{ backgroundColor: colors.background }}>
+  <h2 className="text-lg sm:text-xl italic text-center mb-3 sm:mb-4 font-light" style={{ color: colors.primary }}>Regalos</h2>
+  <p className="text-center text-[10px] sm:text-xs mb-8 sm:mb-12" style={{ color: colors.contrast }}>
+    ¡El regalo es opcional, lo más importante para nosotros, es tu compañía!
+  </p>
+  
+  <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
+    <div className="text-center">
+      <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
+        <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
+      </div>
+      {/* Corrección aquí: se añadió la comilla faltante en className */}
+      <div className="text-center">
+        <Image
+          src="/images/amazon-logo.png"
+          alt="Amazon"
+          width={100}
+          height={35}
+          className="mx-auto mb-3 sm:mb-4"
+        />
+        <a 
+          href="https://amzn.to/3Fhxze7"
+          rel="noopener noreferrer"
+          className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
+          style={{ backgroundColor: colors.primary, color: 'white' }}
+        >
+          IR AL SITIO
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Gift Envelope Section */}
       <section className="py-6 sm:py-8 px-4 text-center" style={{ backgroundColor: colors.background }}>
@@ -877,12 +887,12 @@ const WeddingApp: React.FC = () => {
         
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>Hacienda La Encarnación</h3>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Conocida Hacienda</p>
+            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>Hotel San Judas Tadeo</h3>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Calle Jacarandas, Arboledasl</p>
             <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
-            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 499 100 0003</p>
+            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 499 926 0777</p>
             <a 
-              href="https://maps.app.goo.gl/9GVXjwCCJxQf5rhM9" 
+              href="https://maps.app.goo.gl/faYb6oYH87DpqNdNA" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
