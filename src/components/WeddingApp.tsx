@@ -824,14 +824,13 @@ const WeddingApp: React.FC = () => {
       <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
         <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
       </div>
-      {/* Corrección aquí: se añadió la comilla faltante en className */}
       <div className="text-center">
         <Image
           src="/images/amazon-logo.png"
           alt="Amazon"
           width={100}
           height={35}
-          className="mx-auto mb-3 sm:mb-4"
+          className="mx-auto mb-3 sm:mb-4 block" // Añadida clase "block"
         />
         <a 
           href="https://amzn.to/3Fhxze7"
@@ -888,7 +887,7 @@ const WeddingApp: React.FC = () => {
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div className="text-center">
             <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>Hotel San Judas Tadeo</h3>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Calle Jacarandas, Arboledasl</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Calle Jacarandas, Arboledas</p>
             <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
             <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 499 926 0777</p>
             <a 
