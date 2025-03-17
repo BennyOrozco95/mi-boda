@@ -824,7 +824,7 @@ const WeddingApp: React.FC = () => {
     <div className="w-full flex flex-col items-center">
       {/* Contenedor del título */}
       <div className="h-10 mb-3 sm:mb-4 flex items-center justify-center w-full">
-        <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
+        <div className="font-bold text-lg" style={{ color: colors.primary }}></div>
       </div>
       
       {/* Contenedor de imagen y botón con alineación central */}
@@ -838,6 +838,7 @@ const WeddingApp: React.FC = () => {
         />
         <a 
           href="https://amzn.to/3Fhxze7"
+          target="_blank"
           rel="noopener noreferrer"
           className="block w-fit px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
           style={{ backgroundColor: colors.primary, color: 'white' }}
