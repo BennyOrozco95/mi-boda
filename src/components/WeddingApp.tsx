@@ -820,22 +820,26 @@ const WeddingApp: React.FC = () => {
   </p>
   
   <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-8">
-    <div className="text-center">
-      <div className="h-10 mx-auto mb-3 sm:mb-4 flex items-center justify-center">
+    {/* Contenedor principal con ancho completo y alineación central */}
+    <div className="w-full flex flex-col items-center">
+      {/* Contenedor del título */}
+      <div className="h-10 mb-3 sm:mb-4 flex items-center justify-center w-full">
         <div className="font-bold text-lg" style={{ color: colors.primary }}>Amazon</div>
       </div>
-      <div className="text-center">
+      
+      {/* Contenedor de imagen y botón con alineación central */}
+      <div className="flex flex-col items-center w-full">
         <Image
           src="/images/amazon-logo.png"
           alt="Amazon"
           width={100}
           height={35}
-          className="mx-auto mb-3 sm:mb-4 block" // Añadida clase "block"
+          className="mb-3 sm:mb-4 block mx-auto"
         />
         <a 
           href="https://amzn.to/3Fhxze7"
           rel="noopener noreferrer"
-          className="inline-block px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
+          className="block w-fit px-2 sm:px-3 py-1 rounded-full text-[10px] sm:text-xs transition-colors"
           style={{ backgroundColor: colors.primary, color: 'white' }}
         >
           IR AL SITIO
