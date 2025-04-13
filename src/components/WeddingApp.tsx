@@ -549,13 +549,13 @@ const WeddingApp: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-10 md:gap-16">
             <div className="text-center md:w-5/12">
               <h3 className="text-xl sm:text-2xl italic mb-4 font-light" style={{ color: colors.primary }}>Ceremonia</h3>
-              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>Parroquia De San Judas Tadeo</p>
-              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Calle Reforma #2</p>
-              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Centro</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>01:30 p.m.</p>
+              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>Iglesia San Antonio De Padua</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Calle Hidalgo #5</p>
+              <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Cienega</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Jerez, Zacatecas</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>2:00 p.m.</p>
               <a 
-                href="https://maps.app.goo.gl/dqZjPfS7LEXVtmvn7" 
+                href="https://maps.app.goo.gl/mZ6nGnEXxBdZ38Cy7" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-1.5 border rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
@@ -577,12 +577,12 @@ const WeddingApp: React.FC = () => {
             
             <div className="text-center md:w-5/12">
               <h3 className="text-xl sm:text-2xl italic mb-4 font-light" style={{ color: colors.primary }}>Recepción</h3>
-              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>Hacienda la Encarnación</p>
+              <p className="text-sm sm:text-base font-medium mb-2" style={{ color: colors.contrast }}>Hacienda De Cienega</p>
               <p className="text-[10px] sm:text-xs md:text-sm" style={{ color: colors.contrast }}>Conocida Hacienda</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
-              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>03:30 p.m.</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-1" style={{ color: colors.contrast }}>Jerez, Zacatecas</p>
+              <p className="text-[10px] sm:text-xs md:text-sm mb-4" style={{ color: colors.contrast }}>04:00 p.m.</p>
               <a 
-                href="https://maps.app.goo.gl/9GVXjwCCJxQf5rhM9" 
+                href="https://maps.app.goo.gl/8kDJRtB6zntDPQpD8" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block px-4 py-1.5 border rounded-full text-[10px] sm:text-xs tracking-wide transition-colors"
@@ -732,7 +732,7 @@ const WeddingApp: React.FC = () => {
         <div className="max-w-xs sm:max-w-md mx-auto space-y-8 sm:space-y-10">
           <div className="flex items-center">
             <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              01:00 p.m.
+              08:00 a.m
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
               <img src="/images/bible.png" alt="Bautizo" className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -742,7 +742,7 @@ const WeddingApp: React.FC = () => {
           
           <div className="flex items-center">
             <div className="text-xs sm:text-sm md:text-base w-24 text-right font-medium" style={{ color: colors.primary }}>
-              01:30 p.m.
+              02:00 p.m.
             </div>
             <div className="w-8 h-8 sm:w-10 sm:h-10 mx-4 flex items-center justify-center" style={{ color: colors.accent }}>
               <img src="/images/ceremonia.png" alt="Ceremonia" className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -891,12 +891,12 @@ const WeddingApp: React.FC = () => {
         
         <div className="max-w-xs sm:max-w-md md:max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
           <div className="text-center">
-            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>Hotel San Judas Tadeo</h3>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Calle Jacarandas, Arboledas</p>
-            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Villanueva, Zacatecas</p>
-            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 499 926 0777</p>
+            <h3 className="text-sm sm:text-base tracking-wide mb-2 sm:mb-3" style={{ color: colors.contrast }}>HOTEL JARDIN RESTAURANT BAR</h3>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Calle Del Santuaro #5</p>
+            <p className="text-[10px] sm:text-xs" style={{ color: colors.contrast }}>Jerez, Zacatecas</p>
+            <p className="text-[10px] sm:text-xs mb-3 sm:mb-4" style={{ color: colors.contrast }}>Contacto: 494 945 2026</p>
             <a 
-              href="https://maps.app.goo.gl/faYb6oYH87DpqNdNA" 
+              href="https://maps.app.goo.gl/14qzc37LLHCSSeTY6" 
               target="_blank" 
               rel="noopener noreferrer"
               className="inline-block px-3 sm:px-4 py-1.5 border rounded-full text-[10px] sm:text-xs transition-colors"
